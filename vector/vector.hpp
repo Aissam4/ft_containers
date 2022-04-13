@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 15:22:20 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:26:24 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
 			}
 			vector(int capacity)
 			{
-				this->_vector = new[capacity];
+				this->_vector = new T[capacity];
 				this->_capacity = capacity;
 				this->_elementNumber = 0;
 			}
@@ -50,6 +50,10 @@ namespace ft
 				if (index < this->_elementNumber)
 					return (this->_vector[index]);
 				//TODO: throw an expetion or error
+			}
+			int	size( void )
+			{
+				return (this->_elementNumber);
 			}
     };
     
