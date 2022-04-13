@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 15:14:49 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:22:20 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,33 @@ namespace ft
     class vector
     {
         private:
-            T	_vector;
+            T	*_vector;
             int	_capacity;
 			int	_elementNumber;
 		public:
-		vector();
-		vector(int capacity);
-		vector(const vector &obj);
-		~vector();
-            
+			vector()
+			{
+				this->_vector = new T[1];
+				this->_capacity = 1;
+				this->_elementNumber = 0;
+			}
+			vector(int capacity)
+			{
+				this->_vector = new[capacity];
+				this->_capacity = capacity;
+				this->_elementNumber = 0;
+			}
+			vector(const vector &obj)
+			{
+				*this = obj;
+			}
+			~vector();
+			T	get(int index)
+			{
+				if (index < this->_elementNumber)
+					return (this->_vector[index]);
+				//TODO: throw an expetion or error
+			}
     };
     
 }
