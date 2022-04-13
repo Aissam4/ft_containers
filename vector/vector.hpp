@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 23:01:26 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/13 23:22:32 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 namespace ft
 {
-    template <typename T>
+    template <typename T, std::allocator<T> >
     class vector
     {
         private:
@@ -30,19 +30,19 @@ namespace ft
 		public:
 			vector()
 			{
-				this->_vector = new T[1];
-				//TODO: use allocator instead of new
+				std::allocator<T> alloc;
+				this->_vector = alloc.allocate(1);
 				this->_capacity = 1;
 				this->_elementNumber = 0;
 			}
 			vector(int capacity)
 			{
-				this->_vector = new T[capacity];
-				//TODO: use allocator instead of new
+				std::allocator<T> alloc;
+				this->_vector = alloc.allocate(capacity);
 				this->_capacity = capacity;
 				this->_elementNumber = 0;
 			}
-			vector(const vector<T> &obj)
+			vector(const vector &obj)
 			{
 				*this = obj;
 			}
@@ -61,9 +61,9 @@ namespace ft
 			{
 				return (this->_capacity);
 			}
-			vector<T> & operator=(const vector<T> &obj)
+			vector & operator=(const vector &obj)
 			{
-				if (this != &ojb)
+				if (this != &obj)
 				{
 					delete[] this->_vector;
 					for (unsigned int i = 0; i < this->_elementNumber; i++)
