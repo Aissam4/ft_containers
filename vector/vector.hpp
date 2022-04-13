@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.hpp                                         :+:      :+:    :+:   */
+/*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 16:00:14 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/13 23:01:26 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __VECTOR_HPP
-#define __VECTOR_HPP
+# define __VECTOR_HPP
 
 # include <string>
 # include <iostream>
@@ -46,7 +46,7 @@ namespace ft
 			{
 				*this = obj;
 			}
-			~vector();
+			~vector(){};
 			T	get(unsigned int index) const
 			{
 				if (index < this->_elementNumber)
@@ -74,6 +74,5 @@ namespace ft
 				return *this;
 			}
     };
-    
 }
 #endif
