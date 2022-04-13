@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 15:34:40 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:00:14 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ namespace ft
     {
         private:
             T	*_vector;
-            int	_capacity;
-			int	_elementNumber;
+            unsigned int	_capacity;
+			unsigned int	_elementNumber;
 		public:
 			vector()
 			{
@@ -47,7 +47,7 @@ namespace ft
 				*this = obj;
 			}
 			~vector();
-			T	get(int index) const
+			T	get(unsigned int index) const
 			{
 				if (index < this->_elementNumber)
 					return (this->_vector[index]);
@@ -61,7 +61,18 @@ namespace ft
 			{
 				return (this->_capacity);
 			}
-			vector<T> & operator=(const vector<T> &);
+			vector<T> & operator=(const vector<T> &obj)
+			{
+				if (this != &ojb)
+				{
+					delete[] this->_vector;
+					for (unsigned int i = 0; i < this->_elementNumber; i++)
+						this->_vector[i] = obj._vector[i];
+					this->_capacity = obj._capacity;
+					this->_elementNumber = obj._elementNumber;
+				}
+				return *this;
+			}
     };
     
 }
