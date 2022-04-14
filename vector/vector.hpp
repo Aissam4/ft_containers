@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:19:45 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 10:40:57 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ namespace ft
 				*this = obj;
 			}
 			~vector(){};
-			T	get(unsigned int index) const
+			T	at(unsigned int index) const
 			{
-				if (index < this->_elementNumber)
-					return (this->_vector[index]);
+				if (index > this->_capacity)
+					throw vector::out_of_range();
 				else
-					throw vector::OutOfRangExeption();
+					return (this->_vector[index]);
 			}
 			int	size( void ) const
 			{
@@ -76,7 +76,7 @@ namespace ft
 				return *this;
 			}
 			/**** Exeption class *****/
-			class OutOfRangExeption : public std::exception
+			class out_of_range : public std::exception
 			{
 				public:
 				virtual const char *what( void ) const throw()
