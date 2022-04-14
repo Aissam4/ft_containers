@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/13 23:22:32 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 09:56:31 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ namespace ft
 			{
 				if (index < this->_elementNumber)
 					return (this->_vector[index]);
-				//TODO: throw an expetion or error
+				else
+					throw vector::OutOfRangExeption();
 			}
 			int	size( void ) const
 			{
@@ -72,6 +73,15 @@ namespace ft
 					this->_elementNumber = obj._elementNumber;
 				}
 				return *this;
+			}
+			/**** Exeption class *****/
+			class OutOfRangExeption : public std::exception
+			{
+					public:
+					virtual const char *what( void ) const throw()
+					{
+						return ("Index out of range");
+					}
 			}
     };
 }
