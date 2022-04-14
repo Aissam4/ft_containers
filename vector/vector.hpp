@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:40:57 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:06:08 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,28 @@ namespace ft
 			{
 				*this = obj;
 			}
-			~vector(){};
+			~vector()
+			{
+				delete[] this->_vector;
+			};
 			T	at(unsigned int index) const
 			{
 				if (index > this->_capacity)
 					throw vector::out_of_range();
 				else
 					return (this->_vector[index]);
+			}
+			T&	back()
+			{
+				return (this->_vector[this->_elementNumber]);
+			}
+			T&	front()
+			{
+				return (this->_vector[0]);
+			}
+			unsigned int capacity(void)
+			{
+				return (this->_capacity);
 			}
 			int	size( void ) const
 			{
