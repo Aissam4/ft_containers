@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 11:06:08 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:14:16 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,22 @@ namespace ft
 			T&	front()
 			{
 				return (this->_vector[0]);
+			}
+			T*	begin()
+			{
+				return this->_vector;
+			}
+			const T*	cbegin()
+			{
+				return this->_vector;
+			}
+			T*	end()
+			{
+				return this->_vector + this->_elementNumber - 1;
+			}
+			const T*	cend()
+			{
+				return this->_vector + this->_elementNumber - 1;
 			}
 			unsigned int capacity(void)
 			{
