@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 11:14:16 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:00:47 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ namespace ft
 			}
 			~vector()
 			{
-				delete[] this->_vector;
+				delete this->_vector;
+				this->_vector = nullptr;
 			};
 			T	at(unsigned int index) const
 			{
@@ -58,6 +59,7 @@ namespace ft
 				else
 					return (this->_vector[index]);
 			}
+			/**** ITERATORS ****/
 			T&	back()
 			{
 				return (this->_vector[this->_elementNumber]);
@@ -68,7 +70,7 @@ namespace ft
 			}
 			T*	begin()
 			{
-				return this->_vector;
+				return (this->_vector);
 			}
 			const T*	cbegin()
 			{
@@ -76,12 +78,21 @@ namespace ft
 			}
 			T*	end()
 			{
-				return this->_vector + this->_elementNumber - 1;
+				return this->_vector + this->_elementNumber;
 			}
 			const T*	cend()
 			{
-				return this->_vector + this->_elementNumber - 1;
+				return this->_vector + this->_elementNumber;
 			}
+			T*	rbegin()
+			{
+				return(this->_vector->begin());
+			}
+			T*	rend()
+			{
+				return(this->_vector->end() - 1);
+			}
+			
 			unsigned int capacity(void)
 			{
 				return (this->_capacity);
