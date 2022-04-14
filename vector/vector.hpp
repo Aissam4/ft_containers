@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:05:35 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/14 10:19:45 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 # include <iostream>
 # include <algorithm>
 # include <limits>
+# include <vector>
 
 namespace ft
 {
-    template <typename T, std::allocator<T> >
+	template < class T, class Allocator = std::allocator<T> >
     class vector
     {
         private:
-            T	*_vector;
+            T				*_vector;
             unsigned int	_capacity;
 			unsigned int	_elementNumber;
 		public:
