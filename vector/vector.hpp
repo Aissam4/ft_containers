@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 13:00:47 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:56:18 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <algorithm>
 # include <limits>
 # include <vector>
+# include <iterator>
+# include <cstddef>
 
 namespace ft
 {
@@ -29,6 +31,14 @@ namespace ft
             unsigned int	_capacity;
 			unsigned int	_elementNumber;
 		public:
+			struct Iterator
+			{
+				typedef std::forward_iterator_tag	iterator_category;
+				typedef std::ptrdiff_t				difference_type;
+				typedef T							value_type;
+				typedef T*							pointer;
+				typedef T&							reference;
+			};
 			vector()
 			{
 				std::allocator<T> alloc;
@@ -68,30 +78,6 @@ namespace ft
 			{
 				return (this->_vector[0]);
 			}
-			T*	begin()
-			{
-				return (this->_vector);
-			}
-			const T*	cbegin()
-			{
-				return this->_vector;
-			}
-			T*	end()
-			{
-				return this->_vector + this->_elementNumber;
-			}
-			const T*	cend()
-			{
-				return this->_vector + this->_elementNumber;
-			}
-			T*	rbegin()
-			{
-				return(this->_vector->begin());
-			}
-			T*	rend()
-			{
-				return(this->_vector->end() - 1);
-			}
 			
 			unsigned int capacity(void)
 			{
@@ -105,6 +91,7 @@ namespace ft
 			{
 				return (this->_capacity);
 			}
+			/***** operators *******/
 			vector & operator=(const vector &obj)
 			{
 				if (this != &obj)
@@ -117,6 +104,11 @@ namespace ft
 				}
 				return *this;
 			}
+			// template<class T, class Allocator>
+			// bool	operator==(const vector &obj)
+			// {
+			// 	return ()
+			// }
 			/**** Exeption class *****/
 			class out_of_range : public std::exception
 			{

@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:57:31 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/14 12:17:10 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:52:58 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ int main(void)
 	// 	std::cout << *vector_str.rbegin() << std::endl;
 	// 	std::cout << *vector_str.rend() << std::endl;
 	// }
-	std::cout << "ft Vector" << std::endl;
-	{
-		ft::vector<std::string> vector_str(2);
-		// vector_str.push_back("Hello");
-		// vector_str.push_back("Hello2");
-		std::cout << *vector_str.rbegin() << std::endl;
-		// std::cout << *vector_str.rend() << std::endl;
-	}
+	// std::cout << "ft Vector" << std::endl;
+	// {
+	// 	ft::vector<std::string> vector_str(2);
+	// 	// vector_str.push_back("Hello");
+	// 	// vector_str.push_back("Hello2");
+	// 	std::cout << *vector_str.rbegin() << std::endl;
+	// 	// std::cout << *vector_str.rend() << std::endl;
 }
