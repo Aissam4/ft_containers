@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/16 15:56:45 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:48:08 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ namespace ft
 			{
 				return (this->_vector[n]);
 			}
-
 			class out_of_range : public std::exception
 			{
 				public:
