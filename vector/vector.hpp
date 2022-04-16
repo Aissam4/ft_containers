@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/15 12:56:18 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:56:45 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ namespace ft
 				typedef T							value_type;
 				typedef T*							pointer;
 				typedef T&							reference;
+				Iterator(pointer ptr) : _vecpointer(ptr) {}
+				private:
+					pointer _vecpointer;
 			};
 			vector()
 			{
@@ -69,6 +72,11 @@ namespace ft
 				else
 					return (this->_vector[index]);
 			}
+			bool	empty( void ) const
+			{
+				return (!this->_elementNumber);
+			}
+			
 			/**** ITERATORS ****/
 			T&	back()
 			{
@@ -77,11 +85,6 @@ namespace ft
 			T&	front()
 			{
 				return (this->_vector[0]);
-			}
-			
-			unsigned int capacity(void)
-			{
-				return (this->_capacity);
 			}
 			int	size( void ) const
 			{
@@ -104,12 +107,11 @@ namespace ft
 				}
 				return *this;
 			}
-			// template<class T, class Allocator>
-			// bool	operator==(const vector &obj)
-			// {
-			// 	return ()
-			// }
-			/**** Exeption class *****/
+			vector & operator[](unsigned int n)
+			{
+				return (this->_vector[n]);
+			}
+
 			class out_of_range : public std::exception
 			{
 				public:
