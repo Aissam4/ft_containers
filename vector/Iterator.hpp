@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/16 20:00:38 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/16 20:04:40 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ namespace ft
 			Iterator()
 			{
 				this->_it = nullptr;
+			}
+			Iterator_Type	base()
+			{
+				return (this->_it);
 			}
 	
 	};
