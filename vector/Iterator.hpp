@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/17 17:31:36 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:00:23 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,35 @@ namespace ft
 			{
 				return (*(this->_it + n));
 			}
-			
 	};
+	template <class F_Iterator, class S_Iterator>
+		bool	operator==(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() == S.base());
+		}
+	template <class F_Iterator, class S_Iterator>
+		bool	operator>(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() > S.base());
+		}
+	template <class F_Iterator, class S_Iterator>
+		bool	operator<(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() < S.base());
+		}
+	template <class F_Iterator, class S_Iterator>
+		bool	operator<=(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() <= S.base());
+		}
+	template <class F_Iterator, class S_Iterator>
+		bool	operator>=(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() >= S.base());
+		}
+	template <class F_Iterator, class S_Iterator>
+		bool	operator!=(const Iterator<F_Iterator> &F, const Iterator<S_Iterator> &S)
+		{
+			return (F.base() != S.base());
+		}	
 }
