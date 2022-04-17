@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/16 20:19:04 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:31:36 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ namespace ft
 			{
 				this->_it = element;
 			}
+			Iterator(Iterator	&obj)
+			{
+				*this = obj;
+			}
 			Iterator_Type	base( void )
 			{
 				return (this->_it);
@@ -56,5 +60,40 @@ namespace ft
 				this->_it -= _n;
 				return (*this);
 			}
+			Iterator&	operator++( void )
+			{
+				++this->_it;
+				return (*this);
+			}
+			Iterator&	operator--( void )
+			{
+				--this->_it;
+				return (*this);
+			}
+			Iterator	operator++( int )
+			{
+				Iterator_Type	obj(*this);
+				++(*this);
+				return (obj);
+			}
+			Iterator	operator--( int )
+			{
+				Iterator_Type	obj(*this);
+				--(*this);
+				return (obj);
+			}
+			reference	operator*() const
+			{
+				return (*this->_it);
+			}
+			pointer		operator->()
+			{
+				return (&(operator*()));
+			}
+			reference	operator[](difference_type n)
+			{
+				return (*(this->_it + n));
+			}
+			
 	};
 }
