@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/16 19:48:08 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:15:19 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <vector>
 # include <iterator>
 # include <cstddef>
+# include "Iterator.hpp"
+
 
 namespace ft
 {
@@ -27,21 +29,16 @@ namespace ft
     class vector
     {
         private:
-            T				*_vector;
+            T*				_vector;
             unsigned int	_capacity;
 			unsigned int	_elementNumber;
 		public:
-			struct Iterator
-			{
-				typedef std::forward_iterator_tag	iterator_category;
-				typedef std::ptrdiff_t				difference_type;
-				typedef T							value_type;
-				typedef T*							pointer;
-				typedef T&							reference;
-				Iterator(pointer ptr) : _vecpointer(ptr) {}
-				private:
-					pointer _vecpointer;
-			};
+			typedef Allocator													allocator_type;
+			typedef typename	allocator_type::pointer							pointer;
+			typedef typename	allocator_type::const_pointer					const_pointer;
+			typedef	typename	ft::Iterator<pointer>								iterator;
+			typedef	typename	ft::Iterator<const_pointer>							const_iterator;
+			
 			vector()
 			{
 				std::allocator<T> alloc;
@@ -78,11 +75,15 @@ namespace ft
 			}
 			
 			/**** ITERATORS ****/
-			T&	back()
+			iterator	begin( void )
+			{
+				return (iterator(this->_vector));
+			}
+			T&	back( void )
 			{
 				return (this->_vector[this->_elementNumber]);
 			}
-			T&	front()
+			T&	front( void )
 			{
 				return (this->_vector[0]);
 			}

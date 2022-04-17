@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/17 18:00:23 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:13:55 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ namespace ft
 			{
 				this->_it = nullptr;
 			}
-			Iterator(difference_type element)
+			Iterator(Iterator_Type element)
 			{
 				this->_it = element;
 			}
-			Iterator(Iterator	&obj)
+			template<class Iter>
+			Iterator(const Iterator<Iter>	&obj)
 			{
-				*this = obj;
+				this->_it = obj.base();
 			}
 			Iterator_Type	base( void )
 			{
