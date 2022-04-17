@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/17 23:15:19 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:22:28 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ namespace ft
 			{
 				std::allocator<T> alloc;
 				this->_vector = alloc.allocate(capacity);
+				//for test
+				// this->_vector[0] = "Hello";
+				// this->_vector[1] = "world";
 				this->_capacity = capacity;
 				this->_elementNumber = 0;
 			}
@@ -78,6 +81,10 @@ namespace ft
 			iterator	begin( void )
 			{
 				return (iterator(this->_vector));
+			}
+			iterator	end( void )
+			{
+				return (iterator(this->_vector) + this->_elementNumber);
 			}
 			T&	back( void )
 			{
