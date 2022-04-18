@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/18 01:33:55 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/18 02:44:59 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ namespace ft
     class vector
     {
         private:
-            T*				_vector;
-            unsigned int	_capacity;
-			unsigned int	_elementNumber;
+            T*					_vector;
+            unsigned int		_capacity;
+			unsigned int		_elementNumber;
+			std::allocator<T>	alloc;
 		public:
 			typedef Allocator													allocator_type;
 			typedef typename	allocator_type::pointer							pointer;
@@ -41,15 +42,13 @@ namespace ft
 			
 			vector()
 			{
-				std::allocator<T> alloc;
-				this->_vector = alloc.allocate(1);
+				this->_vector = this->alloc.allocate(1);
 				this->_capacity = 1;
 				this->_elementNumber = 0;
 			}
 			vector(int capacity)
 			{
-				std::allocator<T> alloc;
-				this->_vector = alloc.allocate(capacity);
+				this->_vector = this->alloc.allocate(capacity);
 				this->_capacity = capacity;
 				this->_elementNumber = 0;
 			}
@@ -57,7 +56,12 @@ namespace ft
 			{
 				*this = obj;
 			}
-			~vector(){}
+			~vector()
+			{
+				for(unsigned int i = 0; i < this->_elementNumber; i++)
+					this->alloc.destroy(&this->_vector[i]);
+				// this->_elementNumber = 0;
+			}
 			T	at(unsigned int index) const
 			{
 				if (index > this->_capacity)
@@ -67,27 +71,31 @@ namespace ft
 			}
 			void	push_back(T element)
 			{
-				std::allocator<T> alloc;
 				if (this->_elementNumber == this->_capacity)
 				{
 					unsigned int i = 0;
-					T*	_vec2 = alloc.allocate(this->_capacity * 2);
+					T*	_vec2 = this->alloc.allocate(this->_capacity * 2);
 					for(; i < this->_capacity; i++)
 						_vec2[i] = this->_vector[i];
 					_vec2[i] = element;
-					alloc.deallocate(this->_vector, this->_capacity);
+					this->alloc.deallocate(this->_vector, this->_capacity);
 					this->_elementNumber++;
 					this->_capacity *= 2;
-					this->_vector  = alloc.allocate(this->_capacity);
+					this->_vector  = this->alloc.allocate(this->_capacity);
 					i = 0;
 					for(; i < this->_elementNumber; i++)
 						this->_vector[i] = _vec2[i];
-					alloc.deallocate(_vec2, this->_capacity);
+					this->alloc.deallocate(_vec2, this->_capacity);
 				}
 				else{
 					this->_vector[this->_elementNumber] = element;
 					this->_elementNumber++;
 				}
+			}
+			void	pop_back( void )
+			{
+				this->alloc.destroy(this->_vector + this->_elementNumber);
+				this->_elementNumber--;
 			}
 			void	print( void )
 			{
