@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/18 02:44:59 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:18:07 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,20 @@ namespace ft
 			{
 				this->alloc.destroy(this->_vector + this->_elementNumber);
 				this->_elementNumber--;
+			}
+			void 	reserve(unsigned int n)
+			{
+				if (n > this->_capacity)
+				{
+					T*	_vec2 = this->alloc.allocate(n);
+					for(unsigned int i = 0; i < this->_elementNumber; i++)
+						_vec2 = this->_vector[i];
+					this->alloc.deallocate(this->_vector, this->_capacity);
+					this->_vector = this->alloc.allocate(n);
+					for(unsigned int i = 0; i < this->_elementNumber; i++)
+						this->_vector[i] = _vec2[i];
+					this->_capacity = n;
+				}
 			}
 			void	print( void )
 			{
