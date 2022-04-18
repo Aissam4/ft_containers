@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/18 16:18:07 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:38:27 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ namespace ft
 			}
 			void	push_back(T element)
 			{
-				if (this->_elementNumber == this->_capacity)
+				if (this->_elementNumber + 1 == this->_capacity)
 				{
 					unsigned int i = 0;
 					T*	_vec2 = this->alloc.allocate(this->_capacity * 2);
@@ -103,12 +103,13 @@ namespace ft
 				{
 					T*	_vec2 = this->alloc.allocate(n);
 					for(unsigned int i = 0; i < this->_elementNumber; i++)
-						_vec2 = this->_vector[i];
+						_vec2[i] = this->_vector[i];
 					this->alloc.deallocate(this->_vector, this->_capacity);
 					this->_vector = this->alloc.allocate(n);
 					for(unsigned int i = 0; i < this->_elementNumber; i++)
 						this->_vector[i] = _vec2[i];
 					this->_capacity = n;
+					this->alloc.deallocate(_vec2, this->_capacity);
 				}
 			}
 			void	print( void )
