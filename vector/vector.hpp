@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/17 23:22:28 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:33:55 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ namespace ft
 			{
 				std::allocator<T> alloc;
 				this->_vector = alloc.allocate(capacity);
-				//for test
-				// this->_vector[0] = "Hello";
-				// this->_vector[1] = "world";
 				this->_capacity = capacity;
 				this->_elementNumber = 0;
 			}
@@ -60,11 +57,7 @@ namespace ft
 			{
 				*this = obj;
 			}
-			~vector()
-			{
-				delete this->_vector;
-				this->_vector = nullptr;
-			};
+			~vector(){}
 			T	at(unsigned int index) const
 			{
 				if (index > this->_capacity)
@@ -72,11 +65,39 @@ namespace ft
 				else
 					return (this->_vector[index]);
 			}
+			void	push_back(T element)
+			{
+				std::allocator<T> alloc;
+				if (this->_elementNumber == this->_capacity)
+				{
+					unsigned int i = 0;
+					T*	_vec2 = alloc.allocate(this->_capacity * 2);
+					for(; i < this->_capacity; i++)
+						_vec2[i] = this->_vector[i];
+					_vec2[i] = element;
+					alloc.deallocate(this->_vector, this->_capacity);
+					this->_elementNumber++;
+					this->_capacity *= 2;
+					this->_vector  = alloc.allocate(this->_capacity);
+					i = 0;
+					for(; i < this->_elementNumber; i++)
+						this->_vector[i] = _vec2[i];
+					alloc.deallocate(_vec2, this->_capacity);
+				}
+				else{
+					this->_vector[this->_elementNumber] = element;
+					this->_elementNumber++;
+				}
+			}
+			void	print( void )
+			{
+				for (unsigned int i = 0; i < this->_elementNumber; i++)
+					std::cout << "[" << this->_vector[i] << "]" << std::endl;
+			}
 			bool	empty( void ) const
 			{
 				return (!this->_elementNumber);
 			}
-			
 			/**** ITERATORS ****/
 			iterator	begin( void )
 			{
@@ -85,6 +106,14 @@ namespace ft
 			iterator	end( void )
 			{
 				return (iterator(this->_vector) + this->_elementNumber);
+			}
+			const_iterator	begin( void ) const
+			{
+				return (const_iterator(this->_vector));
+			}
+			const_iterator	end( void ) const
+			{
+				return (const_iterator(this->_vector) + this->_elementNumber);
 			}
 			T&	back( void )
 			{
