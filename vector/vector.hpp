@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/18 16:38:27 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:11:59 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ namespace ft
 			{
 				for(unsigned int i = 0; i < this->_elementNumber; i++)
 					this->alloc.destroy(&this->_vector[i]);
-				// this->_elementNumber = 0;
+				this->_elementNumber = 0;
 			}
 			T	at(unsigned int index) const
 			{
@@ -92,6 +92,18 @@ namespace ft
 					this->_elementNumber++;
 				}
 			}
+			iterator	erase(iterator position)
+			{
+				iterator	tmpIterator = position;
+				this->alloc.destroy(position.base());
+				while(tmpIterator != end() - 1)
+				{
+					*tmpIterator = *(tmpIterator + 1);
+					tmpIterator++;
+				}
+				this->_elementNumber--;
+				return (position);
+			}
 			void	pop_back( void )
 			{
 				this->alloc.destroy(this->_vector + this->_elementNumber);
@@ -112,6 +124,7 @@ namespace ft
 					this->alloc.deallocate(_vec2, this->_capacity);
 				}
 			}
+			
 			void	print( void )
 			{
 				for (unsigned int i = 0; i < this->_elementNumber; i++)

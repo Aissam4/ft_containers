@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/17 23:13:55 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:22:06 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
 			{
 				this->_it = obj.base();
 			}
-			Iterator_Type	base( void )
+			Iterator_Type	base( void ) const
 			{
 				return (this->_it);
 			}
@@ -73,7 +73,7 @@ namespace ft
 			}
 			Iterator	operator++( int )
 			{
-				Iterator_Type	obj(*this);
+				Iterator	obj(*this);
 				++(*this);
 				return (obj);
 			}

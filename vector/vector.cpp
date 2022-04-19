@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:57:31 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/18 16:39:11 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:20:02 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,39 @@ int main(void)
 	// TODO: testing;
 	std::cout << "std Vector" << std::endl;
 	{
-		std::vector<std::string> vector_str(1);
+		std::vector<std::string> vector_str(10);
 		vector_str.push_back("Hello1");
 		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
+		vector_str.push_back("Hello3");
+		vector_str.push_back("Hello4");
+		vector_str.push_back("Hello5");
+		std::cout << vector_str.size() << std::endl;
 		std::cout << vector_str.capacity() << std::endl;
-		vector_str.reserve(1);
-		std::cout << vector_str.capacity() << std::endl;
+		vector_str.erase(vector_str.begin() + 11);
+		for (unsigned int i = 0; i < vector_str.size(); i++)
+			std::cout << vector_str[i] << std::endl;
 	}
 	std::cout << "ft Vector" << std::endl;
 	{
-		ft::vector<std::string> vector_str(1);
+		ft::vector<std::string> vector_str(10);
 		vector_str.push_back("Hello1");
 		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello2");
+		vector_str.push_back("Hello3");
+		vector_str.push_back("Hello4");
+		vector_str.push_back("Hello5");
+		std::cout << vector_str.size() << std::endl;
 		std::cout << vector_str.capacity() << std::endl;
-		vector_str.reserve(1);
-		std::cout << vector_str.capacity() << std::endl;
+		vector_str.erase(vector_str.begin() + 11);
+		vector_str.print();
+		// ft::vector<std::string> vector_str(1);
+		// vector_str.push_back("Hello1");
+		// vector_str.push_back("Hello2");
+		// vector_str.push_back("Hello2");
+		// vector_str.push_back("Hello2");
+		// vector_str.push_back("Hello2");
+		// std::cout << vector_str.capacity() << std::endl;
+		// vector_str.reserve(1);
+		// std::cout << vector_str.capacity() << std::endl;
 		// std::cout << vector_str.capacity() << std::endl;
 		// std::cout << vector_str.size() << std::endl;
 		// vector_str.print();
