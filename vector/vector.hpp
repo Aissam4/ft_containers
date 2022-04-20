@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 17:46:01 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:49:12 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,18 @@ namespace ft
 				else
 					return (this->_vector[index]);
 			}
-			void	push_back(T element)
+			void	push_back(T &element)
 			{
-				// unsigned int i = 0;
-				// T*	_vec2 = this->alloc.allocate(this->_capacity * 2);
-				// for(; i < this->_capacity; i++)
-				// 	_vec2[i] = this->_vector[i];
-				// _vec2[i] = element;
-				// this->_elementNumber = this->_capacity + 1;
-				// this->alloc.deallocate(this->_vector, this->_capacity);
-				// this->_capacity = this->_capacity * 2;
-				// std::cout << "capacity is " << this->_capacity << std::endl;
-				// this->_vector  = this->alloc.allocate(this->_capacity);
-				// i = 0;
-				// for(; i < this->_elementNumber; i++)
-				// 	this->_vector[i] = _vec2[i];
-				// puts("here");
-				// this->alloc.deallocate(_vec2, this->_capacity);
-				// this->_elementNumber++;
+				if (this->_vector == NULL)
+					reserve(1);
+				if (this->_elementNumber == this->_capacity)
+					reserve(this->_capacity * 2);
+				this->alloc.construct(this->_vector + this->_elementNumber, element);
+				this->_elementNumber++;
+								
+			}
+			void	push_back(T const &element)
+			{
 				if (this->_vector == NULL)
 					reserve(1);
 				if (this->_elementNumber == this->_capacity)
