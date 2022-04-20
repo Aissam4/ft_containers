@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 19:55:22 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 20:01:25 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,11 @@ namespace ft
 			{
 				return (iterator(this->_vector) + this->_elementNumber);
 			}
-			const_iterator	begin( void ) const
+			const_iterator	cbegin( void ) const
 			{
 				return (const_iterator(this->_vector));
 			}
-			const_iterator	end( void ) const
+			const_iterator	cend( void ) const
 			{
 				return (const_iterator(this->_vector) + this->_elementNumber);
 			}
