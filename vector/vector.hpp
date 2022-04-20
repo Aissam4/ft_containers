@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 20:01:25 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 20:05:33 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ namespace ft
 			}
 			~vector()
 			{
-				for(unsigned int i = 0; i < this->_elementNumber; i++)
-					this->alloc.destroy(&this->_vector[i]);
-				this->_elementNumber = 0;
+				clear();
 			}
 			T	at(unsigned int index) const
 			{
@@ -133,6 +131,12 @@ namespace ft
 			{
 				return (!this->_elementNumber);
 			}
+			void	clear( void )
+			{
+				for(unsigned int i = 0; i < this->_elementNumber; i++)
+				this->alloc.destroy(&this->_vector[i]);
+				this->_elementNumber = 0;
+			}	
 			/**** ITERATORS ****/
 			iterator	begin( void )
 			{
