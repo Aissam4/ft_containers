@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 17:49:12 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:19:49 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ namespace ft
 			{
 				this->_vector = this->alloc.allocate(1);
 				this->_capacity = 1;
-				this->_elementNumber = 0;
+				this->_elementNumber = 1;
 			}
 			vector(int capacity)
 			{
 				this->_vector = this->alloc.allocate(capacity);
 				this->_capacity = capacity;
-				this->_elementNumber = 0;
+				this->_elementNumber = capacity;
 			}
 			vector(const vector &obj)
 			{
@@ -86,7 +86,7 @@ namespace ft
 				if (this->_elementNumber == this->_capacity)
 					reserve(this->_capacity * 2);
 				this->alloc.construct(this->_vector + this->_elementNumber, element);
-				this->_elementNumber++;
+				this->_elementNumber += 1;
 								
 			}
 			iterator	erase(iterator position)
@@ -117,15 +117,13 @@ namespace ft
 					this->_vector = this->alloc.allocate(n);
 					for(unsigned int i = 0; i < this->_elementNumber; i++)
 						this->_vector[i] = _vec2[i];
-					// this->_capacity = n;
-					this->_elementNumber = this->_capacity = n;
+					this->_capacity = n;
 					this->alloc.deallocate(_vec2, this->_capacity);
 				}
 			}
-			
 			void	print( void )
 			{
-				for (unsigned int i = 0; i < this->_capacity; i++)
+				for (unsigned int i = 0; i < this->_elementNumber; i++)
 					std::cout << "[" << this->_vector[i] << "]" << std::endl;
 			}
 			bool	empty( void ) const
