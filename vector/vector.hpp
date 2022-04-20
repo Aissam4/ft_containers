@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 20:05:33 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 20:13:41 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,21 @@ namespace ft
 				this->_elementNumber--;
 				return (position);
 			}
+			iterator	erase(iterator first, iterator second)
+			{
+				iterator	tmpIterator = first;
+				int			count = 0;
+				for (; tmpIterator != second; tmpIterator++)
+					this->alloc.destroy(tmpIterator.base());
+				while(first != second)
+				{
+					*first = *(first + 1);
+					first++;
+					count++;
+				}
+				this->_elementNumber -= count;
+				return (second + 1);
+			}
 			void	pop_back( void )
 			{
 				this->alloc.destroy(this->_vector + this->_elementNumber);
@@ -136,7 +151,7 @@ namespace ft
 				for(unsigned int i = 0; i < this->_elementNumber; i++)
 				this->alloc.destroy(&this->_vector[i]);
 				this->_elementNumber = 0;
-			}	
+			}
 			/**** ITERATORS ****/
 			iterator	begin( void )
 			{

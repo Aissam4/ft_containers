@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:57:31 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 20:02:52 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 20:19:31 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@ int main(void)
 		vector_str.push_back("Hello2");
 		vector_str.push_back("Hello3");
 		vector_str.push_back("Hello4");
+		vector_str.push_back("Welcome");
+		vector_str.push_back("Welcome");
+		vector_str.push_back("Welcome");
 		vector_str.push_back("Hello5");
 		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
+		vector_str.erase(vector_str.begin() + 1, vector_str.end() - 5);
 		for (unsigned int i = 0; i < vector_str.capacity(); i++)
 			std::cout << "[" << vector_str[i] << "]" << std::endl;
 		std::cout << vector_str.size() << std::endl;
@@ -48,21 +45,16 @@ int main(void)
 	std::cout << "ft Vector" << std::endl;
 	{
 		ft::vector<std::string> vector_str(5);
-		std::cout << vector_str.size() << std::endl;
-		std::cout << vector_str.capacity() << std::endl;
 		vector_str.push_back("Hello1");
 		vector_str.push_back("Hello2");
 		vector_str.push_back("Hello3");
 		vector_str.push_back("Hello4");
+		vector_str.push_back("Welcome");
+		vector_str.push_back("Welcome");
+		vector_str.push_back("Welcome");
 		vector_str.push_back("Hello5");
 		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
+		vector_str.erase(vector_str.begin() + 1, vector_str.end() - 5);
 		vector_str.print();
 		std::cout << vector_str.size() << std::endl;
 		std::cout << vector_str.capacity() << std::endl;
