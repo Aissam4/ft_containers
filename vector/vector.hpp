@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 20:13:41 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:13:38 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ namespace ft
 				for(unsigned int i = 0; i < this->_elementNumber; i++)
 				this->alloc.destroy(&this->_vector[i]);
 				this->_elementNumber = 0;
+			}
+			std::allocator<T>	get_allocator( void )
+			{
+				return (this->alloc);
 			}
 			/**** ITERATORS ****/
 			iterator	begin( void )
