@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/20 21:13:38 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:59:48 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ namespace ft
     {
         private:
             T*					_vector;
-            unsigned int		_capacity;
-			unsigned int		_elementNumber;
+            size_t		_capacity;
+			size_t		_elementNumber;
 			std::allocator<T>	alloc;
 		public:
 			typedef Allocator													allocator_type;
@@ -39,12 +39,11 @@ namespace ft
 			typedef typename	allocator_type::const_pointer					const_pointer;
 			typedef	typename	ft::Iterator<pointer>								iterator;
 			typedef	typename	ft::Iterator<const_pointer>							const_iterator;
-			
 			vector()
 			{
 				this->_vector = this->alloc.allocate(1);
 				this->_capacity = 1;
-				this->_elementNumber = 1;
+				this->_elementNumber = 0;
 			}
 			vector(int capacity)
 			{
@@ -60,7 +59,7 @@ namespace ft
 			{
 				clear();
 			}
-			T	at(unsigned int index) const
+			T	at(size_t index) const
 			{
 				if (index > this->_capacity)
 					throw vector::out_of_range();
@@ -119,7 +118,7 @@ namespace ft
 				this->alloc.destroy(this->_vector + this->_elementNumber);
 				this->_elementNumber--;
 			}
-			void 	reserve(unsigned int n)
+			void 	reserve(size_t n)
 			{
 				if (n > this->_capacity)
 				{
@@ -137,9 +136,37 @@ namespace ft
 					this->_vector = temp;
 				}
 			}
+			void	resize(size_t n, T val = T())
+			{
+				if (n == this->_capacity)
+					return ;
+				T*	tmp = this->alloc.allocate(n);
+				if (n < this->_capacity)
+				{
+					for (size_t i = 0; i < n; i++)
+							this->alloc.construct(tmp + i, this->_vector[i]);
+					for (size_t i = 0; i < this->_capacity; i++)
+						this->alloc.destroy(&this->_vector[i]);
+					this->alloc.deallocate(this->_vector, this->_capacity);
+				}
+				else
+				{
+					size_t i = 0;
+					for(; i < this->_capacity; i++)
+					{
+						this->alloc.construct(tmp + i, this->_vector[i]);
+						this->alloc.destroy(&this->_vector[i]);
+					}
+					for (; i < n; i++)
+						this->alloc.construct(tmp + i, val);
+					this->alloc.deallocate(this->_vector, this->_capacity);
+				}
+				this->_capacity = this->_elementNumber = n;
+				this->_vector = tmp;
+			}
 			void	print( void )
 			{
-				for (unsigned int i = 0; i < this->_capacity; i++)
+				for (size_t i = 0; i < this->_capacity; i++)
 					std::cout << "[" << this->_vector[i] << "]" << std::endl;
 			}
 			bool	empty( void ) const
@@ -148,7 +175,7 @@ namespace ft
 			}
 			void	clear( void )
 			{
-				for(unsigned int i = 0; i < this->_elementNumber; i++)
+				for(size_t i = 0; i < this->_elementNumber; i++)
 				this->alloc.destroy(&this->_vector[i]);
 				this->_elementNumber = 0;
 			}
@@ -185,7 +212,7 @@ namespace ft
 			{
 				return (this->_elementNumber);
 			}
-			unsigned int capacity() const
+			size_t capacity() const
 			{
 				return (this->_capacity);
 			}
@@ -195,14 +222,14 @@ namespace ft
 				if (this != &obj)
 				{
 					delete[] this->_vector;
-					for (unsigned int i = 0; i < this->_elementNumber; i++)
+					for (size_t i = 0; i < this->_elementNumber; i++)
 						this->_vector[i] = obj._vector[i];
 					this->_capacity = obj._capacity;
 					this->_elementNumber = obj._elementNumber;
 				}
 				return *this;
 			}
-			vector & operator[](unsigned int n)
+			vector & operator[](size_t n)
 			{
 				return (this->_vector[n]);
 			}
