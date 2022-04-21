@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/21 19:58:35 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:05:07 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,48 @@ namespace ft
 				this->_capacity = this->_elementNumber = n;
 				this->_vector = tmp;
 			}
+			/*****/
+			iterator insert (iterator position, const T& val)
+			{
+				typename Allocator::difference_type	diff = end() - position;
+				if (this->_elementNumber == this->_capacity)
+						reserve(capacity() + 1);
+				iterator	it = end();
+				while (diff != 0)
+				{
+					*(it) = *(it - 1);
+					it--;
+					diff--;
+				}
+				*(it) = val;
+				++this->_elementNumber;
+				return (it);
+			};
+			void insert (iterator position, size_t n, const T& val)
+			{
+				typename Allocator::difference_type diff = end() - position;
+				typename Allocator::difference_type posIndex = position - begin();
+				if (size() + n > capacity())
+				{
+					if (size() + n > capacity() * 2)
+						reserve(size() + n);
+					else
+						reserve(capacity() * 2);
+				}
+				iterator it = end() - 1;
+				for (size_t i = 0; i < diff; i++)
+				{
+					*(it + n) = *(it);
+					it--;
+				}
+				it = begin() + posIndex;
+				for (size_t i = 0; i < n; i++)
+				{
+					*(it + i) = val;
+				}
+				this->_size += n;
+			};
+			/******/
 			void	shrink_to_fit( void )
 			{
 				T*	tmp = this->alloc.allocate(this->_elementNumber);
