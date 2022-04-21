@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:57:31 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/21 17:19:50 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:59:01 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main(void)
 		vector_str.shrink_to_fit();
 		std::cout << vector_str.size() << std::endl;
 		std::cout << vector_str.capacity() << std::endl;
-			vector_str.print();
+			vector_str.swap(vector_str);
 	// 	ft::vector<int> myvector;
 	// 	for (int i=1;i<10;i++)
 	// 		myvector.push_back(i);

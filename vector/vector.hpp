@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/21 17:19:11 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:58:35 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,13 @@ namespace ft
 			{
 				return (this->alloc);
 			}
+			void swap (vector& obj)
+			{
+				std::swap(obj._elementNumber, this->_elementNumber);
+				std::swap(obj._capacity, this->_capacity);
+				std::swap(obj.alloc, this->alloc);
+				std::swap(obj._vector, this->_vector);
+			};
 			/**** ITERATORS ****/
 			iterator	begin( void )
 			{
