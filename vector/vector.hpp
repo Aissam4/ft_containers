@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/21 20:05:07 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:42:32 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,19 @@ namespace ft
 				this->_vector = tmp;
 			}
 			/*****/
+			void assign (size_t n, const T& val)
+			{
+				clear();
+				if (n > capacity())
+				{
+					this->alloc.deallocate(this->_vector, capacity());
+					this->_vec = this->alloc.allocate(n);
+					this->_capacity = n;
+				}
+				for (size_t i = 0; i < n; i++)
+					this->alloc.construct(this->_vector + i, val);
+				this->_size = n;
+			}
 			iterator insert (iterator position, const T& val)
 			{
 				typename Allocator::difference_type	diff = end() - position;
