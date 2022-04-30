@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILE = vector/Vector.cpp
+SRC_FILE = vector/vector.cpp
 OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 NAME = Containers
 
-CC = c++
+CC = g++
 
 GREEN = \x1b[32m
 

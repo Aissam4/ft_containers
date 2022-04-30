@@ -28,7 +28,7 @@ namespace ft
 			typedef	typename	std::iterator_traits<T>::reference			reference;
 			Iterator( void )
 			{
-				this->_it = nullptr;
+				this->_it = NULL;
 			}
 			Iterator(Iterator_Type element)
 			{
@@ -79,7 +79,7 @@ namespace ft
 			}
 			Iterator	operator--( int )
 			{
-				Iterator_Type	obj(*this);
+				Iterator	obj(*this);
 				--(*this);
 				return (obj);
 			}

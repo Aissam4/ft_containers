@@ -1,25 +1,23 @@
 #ifndef __REVERSE_ITERATOR_HPP__
 #define __REVERSE_ITERATOR_HPP__
-#include "Iterator.hpp"
 #include "vector.hpp"
 namespace ft
 {
     template<class T>
-    class reverse_iterator : public std::reverse_iterator<std::random_access_iterator_tag, T>
+    class reverse_iterator :  public std::iterator<std::random_access_iterator_tag, T>
     {
         private:
             T   _it;
         public:
-            typedef typename    T                                           reverse_iterator_type;
-            typedef typename    std::reverse_iterator<T>::value_type        value_type;
-            typedef typename    std::random_access_iterator_tag             reverse_iterator_tag;
-            typedef typename    std::reverse_iterator<T>::difference_type   difference_type;
-            typedef typename    std::reverse_iterator<T>::pointer           pointer;
-            typedef typename    std::reverse_iterator<T>::reference         reference;
-
+            typedef             T                                           reverse_iterator_type;
+            typedef typename    std::random_access_iterator_tag             reverse_iterator_category;
+            typedef typename    std::iterator_traits<T>::value_type        value_type;
+            typedef typename    std::iterator_traits<T>::difference_type   difference_type;
+            typedef typename    std::iterator_traits<T>::pointer           pointer;
+            typedef typename    std::iterator_traits<T>::reference         reference;
             reverse_iterator( void )
             {
-                this->_it = nullptr;
+                this->_it = NULL;
             }
             reverse_iterator(reverse_iterator_type element)
             {
@@ -70,7 +68,7 @@ namespace ft
 			}
 			reverse_iterator	operator--( int )
 			{
-				reverse_iterator_Type	obj(*this);
+				reverse_iterator	obj(*this);
 				--(*this);
 				return (obj);
 			}
@@ -88,34 +86,33 @@ namespace ft
 			}
     };
 
-
-    template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator==(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+    template <class Iter>
+		bool	operator==(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() == S.base());
 		}
-	template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator>(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+	template <class Iter>
+		bool	operator>(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() > S.base());
 		}
-	template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator<(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+	template <class Iter>
+		bool	operator<(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() < S.base());
 		}
-	template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator<=(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+	template <class Iter>
+		bool	operator<=(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() <= S.base());
 		}
-	template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator>=(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+	template <class Iter>
+		bool	operator>=(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() >= S.base());
 		}
-	template <class F_reverse_iterator, class S_reverse_iterator>
-		bool	operator!=(const reverse_iterator<F_reverse_iterator> &F, const reverse_iterator<S_reverse_iterator> &S)
+	template <class Iter>
+		bool	operator!=(const reverse_iterator<Iter> &F, const reverse_iterator<Iter> &S)
 		{
 			return (F.base() != S.base());
 		}	

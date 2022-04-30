@@ -21,6 +21,7 @@
 # include <iterator>
 # include <cstddef>
 # include "Iterator.hpp"
+# include "reverse_iterator.hpp"
 
 
 namespace ft
