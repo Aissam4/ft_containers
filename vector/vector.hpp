@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __VECTOR_HPP
-# define __VECTOR_HPP
+#ifndef __VECTOR_HPP__
+# define __VECTOR_HPP__
 
 # include <string>
 # include <iostream>
@@ -164,7 +164,6 @@ namespace ft
 				this->_capacity = this->_elementNumber = n;
 				this->_vector = tmp;
 			}
-			/*****/
 			void assign (size_t n, const T& val)
 			{
 				clear();
@@ -218,7 +217,6 @@ namespace ft
 				}
 				this->_size += n;
 			};
-			/******/
 			void	shrink_to_fit( void )
 			{
 				T*	tmp = this->alloc.allocate(this->_elementNumber);
@@ -310,10 +308,10 @@ namespace ft
 			class out_of_range : public std::exception
 			{
 				public:
-				virtual const char *what( void ) const throw()
-				{
-					return ("Index out of range");
-				}
+					virtual const char *what( void ) const throw()
+					{
+						return ("Index out of range");
+					}
 			};
     };
 }

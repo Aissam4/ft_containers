@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Vector.hpp"
+#include "vector.hpp"
 int main(void)
 {
 	// TODO: testing;
