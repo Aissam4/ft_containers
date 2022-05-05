@@ -28,7 +28,7 @@ namespace ft
 			typedef	typename	std::iterator_traits<T>::reference			reference;
 			Iterator( void )
 			{
-				this->_it = NULL;
+				this->_it = nullptr;
 			}
 			Iterator(Iterator_Type element)
 			{

@@ -273,6 +273,15 @@ namespace ft
 			{
 				return (const_iterator(this->_vector) + this->_elementNumber);
 			}
+			/******** reverse_iterator******/
+			reverse_iterator	rbegin( void )
+			{
+				return (reverse_iterator((end() - 1).base()));
+			}
+			reverse_iterator rend( void )
+			{
+				return (reverse_iterator((begin() - 1).base()));
+			}
 			T&	back( void )
 			{
 				return (this->_vector[this->_elementNumber]);

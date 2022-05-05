@@ -1,6 +1,6 @@
 #ifndef __REVERSE_ITERATOR_HPP__
 #define __REVERSE_ITERATOR_HPP__
-#include "vector.hpp"
+#include <iterator>
 namespace ft
 {
     template<class T>
@@ -17,9 +17,9 @@ namespace ft
             typedef typename    std::iterator_traits<T>::reference         reference;
             reverse_iterator( void )
             {
-                this->_it = NULL;
+                this->_it = nullptr;
             }
-            reverse_iterator(reverse_iterator_type element)
+            explicit	reverse_iterator(reverse_iterator_type element)
             {
                 this->_it = element;
             }
@@ -28,7 +28,7 @@ namespace ft
             {
                 this->_it = obj.base();
             }
-            reverse_iterator_type   base( void )
+            reverse_iterator_type   base( void ) const
             {
                 return (this->_it);
             }

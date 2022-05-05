@@ -21,7 +21,7 @@ GREEN = \x1b[32m
 
 RESET = \033[0m
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 	@echo "$(GREEN) \

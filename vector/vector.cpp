@@ -16,7 +16,6 @@ int main(void)
 	// TODO: testing;
 	std::cout << "std Vector" << std::endl;
 	{
-		
 		std::vector<std::string> vector_str(5);
 		vector_str.push_back("Hello1");
 		vector_str.push_back("Hello2");
@@ -30,8 +29,7 @@ int main(void)
 		std::cout << vector_str.size() << std::endl;
 		std::cout << vector_str.capacity() << std::endl;
 		vector_str.shrink_to_fit();
-		std::cout << vector_str.size() << std::endl;
-		std::cout << vector_str.capacity() << std::endl;
+		std::cout << *(vector_str.rbegin() + 1)  << std::endl;
 		// vector_str.erase(vector_str.begin() + 1, vector_str.end() - 5);
 		// for (unsigned int i = 0; i < vector_str.capacity() + 10; i++)
 		// 	std::cout << "[" << vector_str[i] << "]" << std::endl;
@@ -49,22 +47,20 @@ int main(void)
 	} 
 	std::cout << "ft Vector" << std::endl;
 	{
-		ft::vector<std::string> vector_str(5);
-		vector_str.push_back("Hello1");
-		vector_str.push_back("Hello2");
-		vector_str.push_back("Hello3");
-		vector_str.push_back("Hello4");
-		vector_str.push_back("Welcome");
-		vector_str.push_back("Welcome");
-		vector_str.push_back("Welcome");
-		vector_str.push_back("Hello5");
-		vector_str.push_back("Hello5");
-		std::cout << vector_str.size() << std::endl;
-		std::cout << vector_str.capacity() << std::endl;
-		vector_str.shrink_to_fit();
-		std::cout << vector_str.size() << std::endl;
-		std::cout << vector_str.capacity() << std::endl;
-			vector_str.swap(vector_str);
+		// ft::vector<std::string> vector_str(5);
+		// vector_str.push_back("Hello1");
+		// vector_str.push_back("Hello2");
+		// vector_str.push_back("Hello3");
+		// vector_str.push_back("Hello4");
+		// vector_str.push_back("Welcome");
+		// vector_str.push_back("Welcome");
+		// vector_str.push_back("Welcome");
+		// vector_str.push_back("Hello5");
+		// vector_str.push_back("Hello5");
+		// std::cout << vector_str.size() << std::endl;
+		// std::cout << vector_str.capacity() << std::endl;
+		// vector_str.shrink_to_fit();
+		// std::cout << *(vector_str.rbegin() + 1 ) << std::endl;
 	// 	ft::vector<int> myvector;
 	// 	for (int i=1;i<10;i++)
 	// 		myvector.push_back(i);
