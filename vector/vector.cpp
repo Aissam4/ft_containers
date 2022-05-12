@@ -31,7 +31,7 @@ int main(void)
 		vector_str.push_back("Hello2");
 		vector_str.push_back("Hello3");
 		vector_str.push_back("Hello4");
-		std::cout << *(vector_str.rbegin())  << std::endl;
+		std::cout << (*(vector_str.rbegin()))  << std::endl;
 		std::cout << "Here we go " << std::endl;
 	}
 }

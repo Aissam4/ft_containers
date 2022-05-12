@@ -284,6 +284,14 @@ namespace ft
 			{
 				return (reverse_iterator((begin() - 1).base()));
 			}
+			const_reverse_iterator	rbegin() const
+			{
+				return(const_reverse_iterator((end() - 1).base()));
+			}
+			const_reverse_iterator rend( void ) const
+			{
+				return (const_reverse_iterator((begin() - 1).base()));
+			}
 			T&	back( void )
 			{
 				return (this->_vector[this->_elementNumber]);
