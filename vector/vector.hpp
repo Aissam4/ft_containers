@@ -40,6 +40,8 @@ namespace ft
 			typedef typename	allocator_type::const_pointer					const_pointer;
 			typedef	typename	ft::Iterator<pointer>								iterator;
 			typedef	typename	ft::Iterator<const_pointer>							const_iterator;
+			typedef ft::reverse_iterator<pointer>				reverse_iterator;
+			typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
 			vector()
 			{
 				this->_vector = this->alloc.allocate(1);
@@ -263,7 +265,7 @@ namespace ft
 			}
 			iterator	end( void )
 			{
-				return (iterator(this->_vector) + this->_elementNumber);
+				return (iterator(begin() + size()));
 			}
 			const_iterator	cbegin( void ) const
 			{
@@ -271,12 +273,12 @@ namespace ft
 			}
 			const_iterator	cend( void ) const
 			{
-				return (const_iterator(this->_vector) + this->_elementNumber);
+				return (const_iterator(begin() + size()));
 			}
 			/******** reverse_iterator******/
-			reverse_iterator	rbegin( void )
+			reverse_iterator	rbegin()
 			{
-				return (reverse_iterator((end() - 1).base()));
+				return(reverse_iterator((end() - 1).base()));
 			}
 			reverse_iterator rend( void )
 			{
