@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILE = vector/vector.cpp
+SRC_FILE = vector/vector.cpp stack/stack.cpp
 OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 NAME = Containers

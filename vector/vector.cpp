@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector.hpp"
+/*
 int main(void)
 {
 	// TODO: testing;
@@ -34,4 +35,4 @@ int main(void)
 		std::cout << (*(vector_str.rbegin()))  << std::endl;
 		std::cout << "Here we go " << std::endl;
 	}
-}
+}*/
