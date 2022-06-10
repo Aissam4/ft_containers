@@ -6,12 +6,12 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/19 17:22:06 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:34:34 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "vector.hpp"
-
+# include "iterator_traits.hpp"
 namespace ft
 {
 	template<class T>
@@ -21,11 +21,11 @@ namespace ft
 			T	_it;
 		public:
 			typedef	T														Iterator_Type;
-			typedef typename	std::iterator_traits<T>::value_type			value_type;
+			typedef typename	ft::iterator_traits<T>::value_type			value_type;
 			typedef 			std::random_access_iterator_tag		 		iterator_Tag;
-			typedef	typename	std::iterator_traits<T>::difference_type	difference_type;
-			typedef	typename	std::iterator_traits<T>::pointer			pointer;
-			typedef	typename	std::iterator_traits<T>::reference			reference;
+			typedef	typename	ft::iterator_traits<T>::difference_type	difference_type;
+			typedef	typename	ft::iterator_traits<T>::pointer			pointer;
+			typedef	typename	ft::iterator_traits<T>::reference			reference;
 			Iterator( void )
 			{
 				this->_it = nullptr;
