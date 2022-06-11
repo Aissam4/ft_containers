@@ -60,6 +60,18 @@ namespace ft
 			{
 				*this = obj;
 			}
+			template <class Iterator>
+			vector (Iterator first, Iterator last, const allocator_type& alloc = allocator_type())
+			{
+				this->_capacity  = this->_elementNumber = last - first;
+				this->alloc = alloc;
+				this->_vector = this->alloc.allocator(this->_elementNumber);
+				for (int i = 0; (i < this->_elementNumber) && (first != last); i++){
+					this->_vector[i] = *first;
+					first++;
+				}
+
+			}
 			~vector()
 			{
 				clear();
