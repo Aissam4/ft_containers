@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/12 16:08:08 by root             ###   ########.fr       */
+/*   Updated: 2022/06/12 16:42:44 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ namespace ft
 			typedef	typename	ft::Iterator<const_pointer>							const_iterator;
 			typedef ft::reverse_iterator<pointer>				reverse_iterator;
 			typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
+			typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
 			vector( void )
 			{
 				this->_vector = this->alloc.allocate(1);
@@ -62,10 +63,15 @@ namespace ft
 			{
 				*this = obj;
 			}
+			
 			template <class Iter>
-			vector (Iter first, typename ft::enable_if<!ft::is_integral<Iter>::value , Iter>::type last, const allocator_type& alloc = allocator_type())
+			vector (Iter first, Iter last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<Iter>::value,
+                                Iter>::type* = NULL)
 			{
-				this->_capacity  = this->_elementNumber = last - first;
+				difference_type range_ = last - first;
+				reserve(range_);
+				this->_elementNumber = range_;
+				// this->_capacity  = this->_elementNumber = last - first;
 				this->alloc = alloc;
 				this->_vector = this->alloc.allocate(this->_elementNumber);
 				for (size_t i = 0; (i < this->_elementNumber) && (first != last); i++){

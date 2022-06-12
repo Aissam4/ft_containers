@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/12 14:50:12 by root             ###   ########.fr       */
+/*   Updated: 2022/06/12 16:51:24 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,25 @@ namespace ft
 			{
 				return (this->_it);
 			}
-			template <class U>
-			typename ft::enable_if<ft::is_integral<U>::value , Iterator>::type operator+(const U& val){
-				// ft::Iterator tmp = *this;
-				// tmp._it += val;
-				// return tmp;
-				return (Iterator(this->_it + val));
-			}
-
-			template <class U>
-			typename ft::enable_if<ft::is_integral<U>::value , Iterator>::type operator-(const U &val){
-				// ft::Iterator tmp = *this;
-				// tmp._it -= val;
-				// return tmp;
-				return (Iterator(this->_it - val));
-			}
 			Iterator&	operator+=(difference_type _n)
 			{
 				this->_it += _n;
 				return (*this);
 			}
+			Iterator	operator-(difference_type _n)
+			{
+				return (Iterator(this->_it - _n));
+			}
+			Iterator	operator+(difference_type _n)
+			{
+				return (Iterator(this->_it + _n));
+			}
+			 friend difference_type operator-(const Iterator& lhs, const Iterator& rhs) {
+   			 	return lhs._it - rhs._it;
+ 			 }
+			 friend difference_type operator+(const Iterator& lhs, const Iterator& rhs) {
+   			 	return lhs._it + rhs._it;
+ 			 }
 			Iterator&	operator-=(difference_type _n)
 			{
 				this->_it -= _n;
