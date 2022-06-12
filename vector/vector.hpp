@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/12 16:42:44 by root             ###   ########.fr       */
+/*   Updated: 2022/06/12 18:49:39 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,14 @@ namespace ft
                                 Iter>::type* = NULL)
 			{
 				difference_type range_ = last - first;
-				reserve(range_);
-				this->_elementNumber = range_;
-				// this->_capacity  = this->_elementNumber = last - first;
+				this->_elementNumber = this->_capacity = range_;
 				this->alloc = alloc;
 				this->_vector = this->alloc.allocate(this->_elementNumber);
-				for (size_t i = 0; (i < this->_elementNumber) && (first != last); i++){
+				for (size_t i = 0; first != last; i++){
 					this->_vector[i] = *first;
 					first++;
 				}
 			}
-			// template <class InputIterator>
-			// vector (InputIterator first, typename ft::enable_if<!ft::is_integral<InputIterator>::value , InputIterator>::type last,
-			// 		const allocator_type& alloc = allocator_type())
-			// {
-			// 	std::cout << "\e[0;33mRange Constructor called of vector\e[0m" << std::endl;
-			// 	this->_elementNumber = last - first;
-			// 	this->alloc = alloc;
-			// }
 			~vector()
 			{
 				clear();
@@ -157,7 +147,7 @@ namespace ft
 					T*		temp = this->alloc.allocate(n);
 					if (this->_vector != NULL)
 					{
-						for (int i = 0; i < size(); i++)
+						for (unsigned int i = 0; i < size(); i++)
 						{
 							this->alloc.construct(temp + i, this->_vector[i]);
 							this->alloc.destroy(this->_vector + i);
@@ -329,7 +319,7 @@ namespace ft
 			{
 				return (this->_vector[0]);
 			}
-			int	size( void ) const
+			unsigned int	size( void ) const
 			{
 				return (this->_elementNumber);
 			}
