@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Vector.hpp                                         :+:      :+:    :+:   */
+/*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/04/22 17:42:32 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:08:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <limits>
 # include <vector>
 # include <iterator>
-# include <cstddef>
+# include <cstddef>	
 # include "Iterator.hpp"
+# include "../utils/enable_if.hpp"
+# include "../utils/is_integral.hpp"
 # include "reverse_iterator.hpp"
 
 
@@ -30,7 +32,7 @@ namespace ft
     class vector
     {
         private:
-            T*					_vector;
+            T*			_vector;
             size_t		_capacity;
 			size_t		_elementNumber;
 			std::allocator<T>	alloc;
@@ -44,7 +46,7 @@ namespace ft
 			typedef	typename	ft::Iterator<const_pointer>							const_iterator;
 			typedef ft::reverse_iterator<pointer>				reverse_iterator;
 			typedef ft::reverse_iterator<const_pointer>			const_reverse_iterator;
-			vector()
+			vector( void )
 			{
 				this->_vector = this->alloc.allocate(1);
 				this->_capacity = 1;
@@ -60,17 +62,25 @@ namespace ft
 			{
 				*this = obj;
 			}
-			template <class Iterator>
-			vector (Iterator first, Iterator last, const allocator_type& alloc = allocator_type())
+			template <class Iter>
+			vector (Iter first, typename ft::enable_if<!ft::is_integral<Iter>::value , Iter>::type last, const allocator_type& alloc = allocator_type())
 			{
 				this->_capacity  = this->_elementNumber = last - first;
 				this->alloc = alloc;
-				this->_vector = this->alloc.allocator(this->_elementNumber);
-				for (int i = 0; (i < this->_elementNumber) && (first != last); i++){
+				this->_vector = this->alloc.allocate(this->_elementNumber);
+				for (size_t i = 0; (i < this->_elementNumber) && (first != last); i++){
 					this->_vector[i] = *first;
 					first++;
 				}
 			}
+			// template <class InputIterator>
+			// vector (InputIterator first, typename ft::enable_if<!ft::is_integral<InputIterator>::value , InputIterator>::type last,
+			// 		const allocator_type& alloc = allocator_type())
+			// {
+			// 	std::cout << "\e[0;33mRange Constructor called of vector\e[0m" << std::endl;
+			// 	this->_elementNumber = last - first;
+			// 	this->alloc = alloc;
+			// }
 			~vector()
 			{
 				clear();

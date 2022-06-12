@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Iterator.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 19:48:20 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/10 11:34:34 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/12 14:50:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "vector.hpp"
 # include "iterator_traits.hpp"
+# include "../utils/enable_if.hpp"
+# include "../utils/is_integral.hpp"
 namespace ft
 {
 	template<class T>
-	class Iterator : public std::iterator<std::random_access_iterator_tag, T>
+	class Iterator
 	{
 		private:
 			T	_it;
@@ -43,13 +45,20 @@ namespace ft
 			{
 				return (this->_it);
 			}
-			Iterator	operator+(difference_type _n) const
-			{
-				return (Iterator(this->_it + _n));
+			template <class U>
+			typename ft::enable_if<ft::is_integral<U>::value , Iterator>::type operator+(const U& val){
+				// ft::Iterator tmp = *this;
+				// tmp._it += val;
+				// return tmp;
+				return (Iterator(this->_it + val));
 			}
-			Iterator	operator-(difference_type _n) const
-			{
-				return (Iterator(this->_it - _n));
+
+			template <class U>
+			typename ft::enable_if<ft::is_integral<U>::value , Iterator>::type operator-(const U &val){
+				// ft::Iterator tmp = *this;
+				// tmp._it -= val;
+				// return tmp;
+				return (Iterator(this->_it - val));
 			}
 			Iterator&	operator+=(difference_type _n)
 			{
