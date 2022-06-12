@@ -7,7 +7,7 @@ namespace ft{
 			typedef bool value_type;
 			static const value_type value = false;
 		}
-		
+
 	template<>
 		struct is_integral<int>{
 			typedef bool value_type;
