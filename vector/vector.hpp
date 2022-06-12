@@ -70,7 +70,6 @@ namespace ft
 					this->_vector[i] = *first;
 					first++;
 				}
-
 			}
 			~vector()
 			{
