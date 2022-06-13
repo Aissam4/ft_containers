@@ -18,11 +18,17 @@ namespace ft
 	template<class T, class  Compare, class Allocator>
 	class RBTree
 	{
-		typedef ft::Node<T> 	Node;
-		typedef	T			value_type;
-		typedef	Allocator	Allocator_type;
-		typedef typename	Allocator_type::template rebind<Node>::other Node_Allocator;
-		typedef Compare		key_compare;
+		public:
+			typedef ft::Node<T> 	Node;
+			typedef	T			value_type;
+			typedef	Allocator	Allocator_type;
+			typedef typename	Allocator_type::template rebind<Node>::other Node_Allocator;
+			typedef Compare		key_compare;
+		private:
+			Node 			*_Root;
+			Allocator_type	_alloc;
+			Node_Allocator	_Node_alloc;
+			key_compare		_key_comapre;
 	
 
 	};
