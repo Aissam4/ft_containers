@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/15 12:58:51 by abarchil          #+#    #+#              #
-#    Updated: 2022/06/13 18:55:44 by marvin           ###   ########.fr        #
+#    Updated: 2022/06/14 00:06:54 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILE = vector/vector.cpp
+SRC_FILE = map/main.cpp
 OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 NAME = Containers
