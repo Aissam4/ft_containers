@@ -1,3 +1,4 @@
+
 #ifndef __IS_INTEGRAL_HPP__
 #define __IS_INTEGRAL_HPP__
 namespace ft{

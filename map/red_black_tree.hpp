@@ -4,12 +4,21 @@
 #include <algorithm>
 namespace ft
 {
+	template<class T>
+		struct Node{
+			T	_data;
+			Node<T>	*right, left, parent;
+			bool color;
+			Node(T data) : _data(data), right(NULL), left(NULL), parent(NULL){};
+		}
+
 	template<class T, class  Compare, class Allocator = std::allocator<T> >
 	class RBTree
 	{
-		private:
-			
+		typedef Node<T> Node;
 		public:
+			Node T;
+
 	};
 	
 };
