@@ -29,6 +29,17 @@ namespace ft
 			Allocator_type	_alloc;
 			Node_Allocator	_Node_alloc;
 			key_compare		_key_comapre;
+		public:
+			RBTree(const RBTree &obj)
+			{ 
+				*this = obj;
+			};
+			RBTree( void ){
+				this->_Root = NULL;
+				this->_alloc = Allocator_type();
+				this->_Node_alloc = Node_Allocator();
+				this->_key_comapre = key_compare();
+			}
 	
 
 	};
