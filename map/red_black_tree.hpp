@@ -20,7 +20,7 @@ namespace ft
 	class RBTree
 	{
 		public:
-			typedef ft::Node<T> 	Node;
+			typedef struct Node<T> 	Node;
 			typedef	T			value_type;
 			typedef	Allocator	Allocator_type;
 			typedef typename	Allocator_type::template rebind<Node>::other Node_Allocator;
@@ -50,13 +50,17 @@ namespace ft
 				return this->_Root;
 			}
 
-			Node	*NewNode(const T& data){
-				this->_Root = this->_alloc.allocate(1);
+			Node	*NewNode(const T data){
+				this->_Root = this->_Node_alloc.allocate(1);
 				this->_Root->_data = data;
 				this->_Root->left = this->_Root->right = this->_Root->parent = NULL;
 				this->_Root->color = RED;
 				this->_count++;
+				std::cout << "data => " << this->_Root->_data << std::endl;
 				return (this->_Root);
+			}
+			T&	getData(void){
+				return (this->_Root->_data);
 			}
 	
 
