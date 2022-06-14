@@ -4,18 +4,19 @@
 #define RED 1
 #define BLACK 0
 #define NULL (void *)0
+#include <iostream>
 
 namespace ft
 {
 	template<class T>
 		struct Node{
 			T	_data;
-			Node<T>	*right, left, parent;
+			Node<T>	*right, *left, *parent;
 			bool color;
 			Node(T data) : _data(data), right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
 
-	template<class T, class  Compare, class Allocator>
+	template<class T, class  Compare, class Allocator = std::allocator<T> >
 	class RBTree
 	{
 		public:
@@ -29,16 +30,33 @@ namespace ft
 			Allocator_type	_alloc;
 			Node_Allocator	_Node_alloc;
 			key_compare		_key_comapre;
+			int				_count;
 		public:
+			//Copy Constructor
 			RBTree(const RBTree &obj)
-			{ 
+			{
 				*this = obj;
 			};
+			//Default Constructor
 			RBTree( void ){
 				this->_Root = NULL;
 				this->_alloc = Allocator_type();
 				this->_Node_alloc = Node_Allocator();
 				this->_key_comapre = key_compare();
+				this->_count = 0;
+			}
+
+			Node	*getTree( void ){
+				return this->_Root;
+			}
+
+			Node	*NewNode(const T& data){
+				this->_Root = this->_alloc.allocate(1);
+				this->_Root->_data = data;
+				this->_Root->left = this->_Root->right = this->_Root->parent = NULL;
+				this->_Root->color = RED;
+				this->_count++;
+				return (this->_Root);
 			}
 	
 
