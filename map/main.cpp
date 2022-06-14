@@ -6,6 +6,6 @@ int main(void)
 {
 	ft::RBTree<std::string , string> root;
 	std::string str = "Hello World !";
-	root.NewNode(str);
+	cout << root.NewNode(str);
 	// cout << root.getData() << endl;
 }

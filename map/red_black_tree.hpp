@@ -38,11 +38,11 @@ namespace ft
 				*this = obj;
 			};
 			//Default Constructor
-			RBTree( void ){
+			RBTree(const key_compare& comp = key_compare(), const Allocator_type& alloc = Allocator_type()){
 				this->_Root = NULL;
-				this->_alloc = Allocator_type();
+				this->_alloc = alloc;
 				this->_Node_alloc = Node_Allocator();
-				this->_key_comapre = key_compare();
+				this->_key_comapre = comp;
 				this->_count = 0;
 			}
 
@@ -59,8 +59,18 @@ namespace ft
 				std::cout << "data => " << this->_Root->_data << std::endl;
 				return (this->_Root);
 			}
-			T&	getData(void){
+			T	getData(void){
 				return (this->_Root->_data);
+			}
+			Node &operator=(const Node &obj){
+				if (this != obj){
+					//clear
+					this->_alloc = obj._alloc;
+					this->_Node_alloc = obj._Node_alloc;
+					this->_count = obj._count;
+					this->_key_compair = obj._key_compar;
+				}
+				return *this;
 			}
 	
 
