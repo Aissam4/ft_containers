@@ -4,8 +4,5 @@
 using namespace std;
 int main(void)
 {
-	ft::RBTree<std::string , string> root;
-	std::string str = "Hello World !";
-	cout << root.NewNode(str);
-	// cout << root.getData() << endl;
+	// ft::RBTree<std::string , string> root;
 }

@@ -1,8 +1,8 @@
 #ifndef __PAIR_HPP__
 #define __PAIR_HPP__
-namespace ft{
-
-	template<class T1, class T2>
+namespace ft
+{
+	template<typename T1, typename T2>
 	class pair{
 		public:
 			T1	first;
@@ -18,8 +18,8 @@ namespace ft{
 			first(obj1);
 			second(obj2);
 		}
-		template<class X, classs Y>
-		pair(pair<X, Y> &obj){
+		template<class X, class Y>
+		pair(ft::pair<X, Y> &obj){
 			first(obj.first);
 			second(obj.second);
 		}
