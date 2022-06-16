@@ -20,11 +20,22 @@ namespace ft
 			Node() : right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
 
-	template < class Key, class T, class Compare , class Allocator = std::allocator<ft::pair<const Key,T> > >
+	template < class key, class T, class Compare, class Allocator = std::allocator<std::pair<const key,T> > >
 	class RBTree
 	{
 		public:
-
+			typedef	key															key_type;
+			typedef	T															mapp_type;
+			typedef	Allocator													Allocator_type;
+			typedef typename ft::pair<key_type, mapp_type>						value_type;
+			typedef Compare 													key_compar;
+			typedef	typename Allocator::pointer									pointer;
+			typedef	typename Allocator::const_pointer							const_pointer;
+			typedef	typename Allocator::refernce 								refernce;
+			typedef	typename Allocator::const_refernce							const_refernce;
+			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
+			typedef	size_t														size_type;
+			
 	};
 	
 };
