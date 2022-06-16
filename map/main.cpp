@@ -3,15 +3,26 @@
 
 int main(void)
 {
-	ft::RBTree<int ,int > root;
-	root.insert(ft::pair<int, int>(10, 30));
-	root.insert(ft::pair<int, int>(50, 40));
-	root.insert(ft::pair<int, int>(90, 3));
-	root.insert(ft::pair<int, int>(100, 0));
-	root.insert(ft::pair<int, int>(108, 60));
-	// std::cout << root.getSize() << std::endl;
-	root.print();
-	// std::cout << root << std::endl;
-	// std::cout << root->_data << std::endl;
-
+	std::cout << "=================right rotate test================" << std::endl;
+	{
+		ft::RBTree<int ,int > root;
+		root.insert(ft::pair<int, int>(10, 30));
+		root.insert(ft::pair<int, int>(6, 40));
+		root.insert(ft::pair<int, int>(5, 3));
+		root.print();
+		root.setData(root.right_rotate(root.getData()));
+		std::cout << "-------------------------------------" << std::endl;
+		root.print();
+	}
+	std::cout << "=================left rotate test===================" << std::endl;
+	{
+		ft::RBTree<int ,int > root;
+		root.insert(ft::pair<int, int>(5, 30));
+		root.insert(ft::pair<int, int>(6, 40));
+		root.insert(ft::pair<int, int>(7, 3));
+		root.print();
+		root.setData(root.left_rotate(root.getData()));
+		std::cout << "-------------------------------------" << std::endl;
+		root.print();
+	}
 }

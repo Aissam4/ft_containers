@@ -81,7 +81,7 @@ namespace ft
 			size_type getSize( void ){
 				return (this->_size);
 			}
-
+			// for debug
 			void DisplayTree(node_type *root, int space)
 			{
 				if (root == NULL)
@@ -95,11 +95,32 @@ namespace ft
 				std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
 				DisplayTree(root->left, space);
 			}
-			void	print(void ){
+			void	print( void ){
 				node_type *tmp = this->_data;
 				DisplayTree(tmp, 7);
 			}
-
+			node_type	*getData( void ){
+				return (this->_data);
+			}
+			void	setData( node_type *data){
+				this->_data = data;
+			}
+			node_type	*right_rotate(node_type *root){
+				node_type *tmp = root->left;
+				root->left = tmp->right;
+				tmp->right = root;
+				tmp->parent  = NULL;
+				tmp->left->parent = tmp->right->parent = tmp;
+				return (tmp);
+			}
+			node_type	*left_rotate(node_type *root){
+				node_type *tmp = root->right;
+				root->right = tmp->left;
+				tmp->left = root;
+				tmp->parent = NULL;
+				tmp->left->parent = tmp->right->parent = tmp;
+				return (tmp);
+			}
 	};
 	
 };
