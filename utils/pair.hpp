@@ -8,8 +8,6 @@ namespace ft
 			T1	first;
 			T2	second;
 		pair( void ){
-			first();
-			second();
 		}
 		pair(const pair &obj){
 			*this  = obj;

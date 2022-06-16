@@ -13,14 +13,14 @@ namespace ft
 	template<typename KEY, typename T>
 		struct Node
 		{
-			ft::pair<const KEY, T>	_data;
+			ft::pair<KEY, T>	_data;
 			Node	*right, *left, *parent;
 			bool color;
-			Node(ft::pair<const KEY, T> data) : _data(data), right(NULL), left(NULL), parent(NULL), color(RED){};
+			Node(ft::pair<KEY, T> data) : _data(data), right(NULL), left(NULL), parent(NULL), color(RED){};
 			Node() : right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
 
-	template < class key, class T, class Compare, class Allocator = std::allocator<std::pair<const key,T> > >
+	template < class key, class T, class Compare = std::less<key>, class Allocator = std::allocator<std::pair<key,T> > >
 	class RBTree
 	{
 		public:
@@ -31,8 +31,8 @@ namespace ft
 			typedef Compare 													key_compare;
 			typedef	typename Allocator::pointer									pointer;
 			typedef	typename Allocator::const_pointer							const_pointer;
-			typedef	typename Allocator::refernce 								refernce;
-			typedef	typename Allocator::const_refernce							const_refernce;
+			typedef typename Allocator::reference								reference;
+			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
 			typedef	Node<key, T>												node_type;
@@ -41,8 +41,12 @@ namespace ft
 			Allocator_type	_alloc;
 			size_type		_size;
 			key_compare		_comp;
-
-
+			// RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()){
+			// 	this->_data = NULL;
+			// 	this->_size = 0;
+			// 	this->_alloc = alloc;
+			// 	this->_comp = comp;
+			// }
 	};
 	
 };
