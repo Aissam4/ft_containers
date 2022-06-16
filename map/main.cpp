@@ -6,5 +6,10 @@ int main(void)
 	ft::RBTree<int ,int > root;
 	const int x = 10;
 	const int y = 20;
-	root.creatNode(std::pair<int, int>(x, y));
+	ft::pair<int, int> p(x, y);
+	root.insert(p);
+	root.insert(p);
+	root.insert(p);
+	root.insert(p);
+	std::cout << root.getSize() << std::endl;
 }

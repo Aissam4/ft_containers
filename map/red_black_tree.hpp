@@ -25,9 +25,9 @@ namespace ft
 	{
 		public:
 			typedef	key															key_type;
-			typedef	T															mapp_type;
+			typedef	T															map_type;
 			typedef	Allocator													Allocator_type;
-			typedef typename ft::pair<key_type, mapp_type>						value_type;
+			typedef typename ft::pair<key_type, map_type>						value_type;
 			typedef Compare 													key_compare;
 			typedef	typename Allocator::pointer									pointer;
 			typedef	typename Allocator::const_pointer							const_pointer;
@@ -64,18 +64,22 @@ namespace ft
 				return (root);
 			}
 			
-			node_type *creatNode(value_type &data){
+			node_type	*creatNode(value_type data){
 				node_type *node = node_alloc(this->_alloc).allocate(1);
 				node->_data = data;
 				node->left = node->right = node->parent = NULL;
+				this->_size++;
 				node->color = RED;
 				return (node);
 			}
-			// node_type *insert(node_type *root, value_type &data)
-			// {
-				
-			// }
-			 
+			void insert(value_type data)
+			{
+				node_type *node = creatNode(data);
+				this->_data = insert_node(this->_data, node);
+			}
+			size_type getSize( void ){
+				return (this->_size);
+			}
 	};
 	
 };
