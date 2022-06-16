@@ -28,14 +28,21 @@ namespace ft
 			typedef	T															mapp_type;
 			typedef	Allocator													Allocator_type;
 			typedef typename ft::pair<key_type, mapp_type>						value_type;
-			typedef Compare 													key_compar;
+			typedef Compare 													key_compare;
 			typedef	typename Allocator::pointer									pointer;
 			typedef	typename Allocator::const_pointer							const_pointer;
 			typedef	typename Allocator::refernce 								refernce;
 			typedef	typename Allocator::const_refernce							const_refernce;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
-			
+			typedef	Node<key, T>												node_type;
+		private:
+			node_type		_data;
+			Allocator_type	_alloc;
+			size_type		_size;
+			key_compare		_comp;
+
+
 	};
 	
 };
