@@ -47,6 +47,7 @@ namespace ft
 				this->_alloc = alloc;
 				this->_comp = comp;
 			}
+
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
 				if(root == NULL){
@@ -63,7 +64,7 @@ namespace ft
 				}
 				return (root);
 			}
-			
+
 			node_type	*creatNode(value_type data){
 				node_type *node = node_alloc(this->_alloc).allocate(1);
 				node->_data = data;
@@ -80,6 +81,25 @@ namespace ft
 			size_type getSize( void ){
 				return (this->_size);
 			}
+
+			void DisplayTree(node_type *root, int space)
+			{
+				if (root == NULL)
+					return;
+				space += 5;
+				DisplayTree(root->right, space);
+				std::cout<< std::endl;
+				for (int i = 7; i < space; i++)
+					std::cout<<" ";
+				value_type p = root->_data;
+				std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
+				DisplayTree(root->left, space);
+			}
+			void	print(void ){
+				node_type *tmp = this->_data;
+				DisplayTree(tmp, 7);
+			}
+
 	};
 	
 };
