@@ -3,5 +3,5 @@
 
 int main(void)
 {
-	ft::RBTree<int , int> root;
+	ft::RBTree<int ,int > root;
 }

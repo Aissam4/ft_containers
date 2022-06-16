@@ -35,18 +35,18 @@ namespace ft
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
-			typedef	Node<key, T>												node_type;
 		private:
-			node_type		_data;
+			typedef	Node<key, T>												node_type;
+			node_type		*_data;
 			Allocator_type	_alloc;
 			size_type		_size;
 			key_compare		_comp;
-			// RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()){
-			// 	this->_data = NULL;
-			// 	this->_size = 0;
-			// 	this->_alloc = alloc;
-			// 	this->_comp = comp;
-			// }
+		public:
+			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL){
+				this->_size = 0;
+				this->_alloc = alloc;
+				this->_comp = comp;
+			}
 	};
 	
 };
