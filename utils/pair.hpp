@@ -8,19 +8,15 @@ namespace ft
 			T1	first;
 			T2	second;
 		pair( void ){
+			first();
+			second();
 		}
 		pair(const pair &obj){
 			*this  = obj;
 		}
-		pair(const T1 &obj1, const T2 &obj2){
-			first(obj1);
-			second(obj2);
-		}
+		pair(const T1 &obj1, const T2 &obj2) : first(obj1) , second(obj2) {}
 		template<class X, class Y>
-		pair(ft::pair<X, Y> &obj){
-			first(obj.first);
-			second(obj.second);
-		}
+		pair(ft::pair<X, Y> &obj) : first(obj.first) , second(obj.second) {}
 		~pair( void ){}
 		pair	&operator=(const pair &obj){
 			if (this != &obj){
@@ -60,7 +56,7 @@ namespace ft
         return !(p1 < p2);
     }
 	template<class T1, class T2>
-	pair<T1, T2> make_pair(T1 x, T2 y)
+	ft::pair<T1, T2> make_pair(T1 x, T2 y)
 	{
 		return (pair<T1, T2>(x, y));
 	}

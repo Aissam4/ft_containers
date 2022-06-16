@@ -35,8 +35,8 @@ namespace ft
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
-		private:
 			typedef	Node<key, T>												node_type;
+		private:
 			node_type		*_data;
 			Allocator_type	_alloc;
 			size_type		_size;
@@ -47,6 +47,35 @@ namespace ft
 				this->_alloc = alloc;
 				this->_comp = comp;
 			}
+			node_type *insert_node(node_type *root, node_type	*newnode)
+			{
+				if(root == NULL){
+					root = newnode;
+				}
+				else if (newnode->_data < root->_data)
+				{
+					root->left = insert_node(root->left, newnode);
+					root->left->parent = root;
+				}
+				else if (newnode->_data > root->_data){
+					root->right = insert_node(root->right, newnode);
+					root->right->parent = root;
+				}
+				return (root);
+			}
+			
+			node_type *creatNode(value_type &data){
+				node_type *node = node_alloc(this->_alloc).allocate(1);
+				node->_data = data;
+				node->left = node->right = node->parent = NULL;
+				node->color = RED;
+				return (node);
+			}
+			// node_type *insert(node_type *root, value_type &data)
+			// {
+				
+			// }
+			 
 	};
 	
 };
