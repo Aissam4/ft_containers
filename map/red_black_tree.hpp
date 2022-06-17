@@ -6,6 +6,7 @@
 #define NULL (void *)0
 #include <iostream>
 
+
 #include "../utils/pair.hpp"
 
 namespace ft
@@ -71,24 +72,6 @@ namespace ft
 				node->color = RED;
 				return (node);
 			}
-			// node_type	*right_rotate(node_type *root)
-			// {
-			// 	node_type *tmp = root->left;
-			// 	root->left = tmp->right;
-			// 	tmp->right = root;
-			// 	tmp->parent  = NULL;
-			// 	tmp->left->parent = tmp->right->parent = tmp;
-			// 	return (tmp);
-			// }
-			// node_type	*left_rotate(node_type *root)
-			// {
-			// 	node_type *tmp = root->right;
-			// 	root->right = tmp->left;
-			// 	tmp->left = root;
-			// 	tmp->parent = NULL;
-			// 	tmp->left->parent = tmp->right->parent = tmp;
-			// 	return (tmp);
-			// }
 			void right_rotate(node_type*& root, node_type*& item)
 			{
 				node_type* parent_left = item->left;
@@ -120,7 +103,7 @@ namespace ft
 					item->parent->right = parent_right;
 				parent_right->left = item;
 				item->parent = parent_right;
-}
+			}
 			void balance(node_type*& root, node_type*& item)
 			{
 				node_type *parent_item = nullptr;
@@ -128,14 +111,16 @@ namespace ft
 				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED)) {
 					parent_item = item->parent;
 					grandParent_item = item->parent->parent;
-					if (parent_item == grandParent_item->left) {
+					if (parent_item == grandParent_item->left)
+					{
 						node_type* uncle_item = grandParent_item->right;
 						if (uncle_item != nullptr && uncle_item->color == RED) {
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
 							uncle_item->color = BLACK;
 							item = grandParent_item;
-						} else {
+						}
+						else {
 							if (item == parent_item->right) {
 								left_rotate(root, parent_item);
 								item = parent_item;
@@ -171,13 +156,11 @@ namespace ft
 			{
 				node_type *node = creatNode(data);
 				this->_data = insert_node(this->_data, node);
-				std::cout << "HERE\n";
 				balance(this->_data, node);
 			}
 			size_type getSize( void ){
 				return (this->_size);
 			}
-			// for debug
 			void DisplayTree(node_type *root, int space)
 			{
 				if (root == NULL)
@@ -188,7 +171,10 @@ namespace ft
 				for (int i = 7; i < space; i++)
 					std::cout<<" ";
 				value_type p = root->_data;
-				std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
+				if (root->color == RED)
+					std::cout<< "\033[0;31mfirst -> " << p.first << "second -> \033[0m" << p.second << std::endl;
+				else
+					std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
 				DisplayTree(root->left, space);
 			}
 			void	print( void ){
@@ -198,10 +184,10 @@ namespace ft
 			node_type	*getData( void ){
 				return (this->_data);
 			}
-			void	setData( node_type *data){
+			void	setData( node_type *data)
+			{
 				this->_data = data;
 			}
-		
 	};
 	
 };
