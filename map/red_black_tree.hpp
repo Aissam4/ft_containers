@@ -106,15 +106,15 @@ namespace ft
 			}
 			void balance(node_type*& root, node_type*& item)
 			{
-				node_type *parent_item = nullptr;
-				node_type *grandParent_item = nullptr;
+				node_type *parent_item = NULL;
+				node_type *grandParent_item = NULL;
 				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED)) {
 					parent_item = item->parent;
 					grandParent_item = item->parent->parent;
 					if (parent_item == grandParent_item->left)
 					{
 						node_type* uncle_item = grandParent_item->right;
-						if (uncle_item != nullptr && uncle_item->color == RED) {
+						if (uncle_item != NULL && uncle_item->color == RED) {
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
 							uncle_item->color = BLACK;
@@ -133,7 +133,7 @@ namespace ft
 					} 
 					else {
 						node_type* uncle_item = grandParent_item->left;
-						if ((uncle_item != nullptr) && (uncle_item->color == RED)) {
+						if ((uncle_item != NULL) && (uncle_item->color == RED)) {
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
 							uncle_item->color = BLACK;
