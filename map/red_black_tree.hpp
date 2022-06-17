@@ -47,7 +47,6 @@ namespace ft
 				this->_alloc = alloc;
 				this->_comp = comp;
 			}
-
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
 				if(root == NULL){
@@ -64,7 +63,6 @@ namespace ft
 				}
 				return (root);
 			}
-
 			node_type	*creatNode(value_type data){
 				node_type *node = node_alloc(this->_alloc).allocate(1);
 				node->_data = data;
@@ -73,10 +71,108 @@ namespace ft
 				node->color = RED;
 				return (node);
 			}
+			// node_type	*right_rotate(node_type *root)
+			// {
+			// 	node_type *tmp = root->left;
+			// 	root->left = tmp->right;
+			// 	tmp->right = root;
+			// 	tmp->parent  = NULL;
+			// 	tmp->left->parent = tmp->right->parent = tmp;
+			// 	return (tmp);
+			// }
+			// node_type	*left_rotate(node_type *root)
+			// {
+			// 	node_type *tmp = root->right;
+			// 	root->right = tmp->left;
+			// 	tmp->left = root;
+			// 	tmp->parent = NULL;
+			// 	tmp->left->parent = tmp->right->parent = tmp;
+			// 	return (tmp);
+			// }
+			void right_rotate(node_type*& root, node_type*& item)
+			{
+				node_type* parent_left = item->left;
+				item->left = parent_left->right;
+				if (item->left != NULL)
+					item->left->parent = item;
+				parent_left->parent = item->parent;
+				if (item->parent == NULL)
+					root = parent_left;
+				else if (item == item->parent->left)
+					item->parent->left = parent_left;
+				else
+					item->parent->right = parent_left;
+				parent_left->right = item;
+				item->parent = parent_left;
+			}
+			void left_rotate(node_type*& root, node_type*& item)
+			{
+				node_type* parent_right = item->right;
+				item->right = parent_right->left;
+				if (item->right != NULL)
+					item->right->parent = item;
+				parent_right->parent = item->parent;
+				if (item->parent == NULL)
+					root = parent_right;
+				else if (item == item->parent->left)
+					item->parent->left = parent_right;
+				else
+					item->parent->right = parent_right;
+				parent_right->left = item;
+				item->parent = parent_right;
+}
+			void balance(node_type*& root, node_type*& item)
+			{
+				node_type *parent_item = nullptr;
+				node_type *grandParent_item = nullptr;
+				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED)) {
+					parent_item = item->parent;
+					grandParent_item = item->parent->parent;
+					if (parent_item == grandParent_item->left) {
+						node_type* uncle_item = grandParent_item->right;
+						if (uncle_item != nullptr && uncle_item->color == RED) {
+							grandParent_item->color = RED;
+							parent_item->color = BLACK;
+							uncle_item->color = BLACK;
+							item = grandParent_item;
+						} else {
+							if (item == parent_item->right) {
+								left_rotate(root, parent_item);
+								item = parent_item;
+								parent_item = item->parent;
+							}
+							right_rotate(root, grandParent_item);
+							std::swap(parent_item->color, grandParent_item->color);
+							item = parent_item;
+						}
+					} 
+					else {
+						node_type* uncle_item = grandParent_item->left;
+						if ((uncle_item != nullptr) && (uncle_item->color == RED)) {
+							grandParent_item->color = RED;
+							parent_item->color = BLACK;
+							uncle_item->color = BLACK;
+							item = grandParent_item;
+						}else {
+							if (item == parent_item->left) {
+								right_rotate(root, parent_item);
+								item = parent_item;
+								parent_item = item->parent;
+							}
+							left_rotate(root, grandParent_item);
+							std::swap(parent_item->color, grandParent_item->color);
+							item = parent_item;
+						}
+					}
+				}
+				root->color = BLACK;
+			}
 			void insert(value_type data)
 			{
 				node_type *node = creatNode(data);
 				this->_data = insert_node(this->_data, node);
+				std::cout << "HERE\n";
+				balance(this->_data, node);
 			}
 			size_type getSize( void ){
 				return (this->_size);
@@ -105,22 +201,7 @@ namespace ft
 			void	setData( node_type *data){
 				this->_data = data;
 			}
-			node_type	*right_rotate(node_type *root){
-				node_type *tmp = root->left;
-				root->left = tmp->right;
-				tmp->right = root;
-				tmp->parent  = NULL;
-				tmp->left->parent = tmp->right->parent = tmp;
-				return (tmp);
-			}
-			node_type	*left_rotate(node_type *root){
-				node_type *tmp = root->right;
-				root->right = tmp->left;
-				tmp->left = root;
-				tmp->parent = NULL;
-				tmp->left->parent = tmp->right->parent = tmp;
-				return (tmp);
-			}
+		
 	};
 	
 };
