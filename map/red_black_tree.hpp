@@ -50,9 +50,8 @@ namespace ft
 			}
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
-				if(root == NULL){
-					root = newnode;
-				}
+				if(root == NULL)
+					return newnode;
 				else if (newnode->_data.first < root->_data.first)
 				{
 					root->left = insert_node(root->left, newnode);
@@ -62,9 +61,12 @@ namespace ft
 					root->right = insert_node(root->right, newnode);
 					root->right->parent = root;
 				}
+				// else if (newnode->_data.first == root->_data.first)
+
 				return (root);
 			}
-			node_type	*creatNode(value_type data){
+			node_type	*creatNode(value_type data)
+			{
 				node_type *node = node_alloc(this->_alloc).allocate(1);
 				node->_data = data;
 				node->left = node->right = node->parent = NULL;
@@ -202,6 +204,64 @@ namespace ft
 			node_type	*search(key_type element ){
 				node_type *tmp = search_in_tree(this->_data, element);
 				return (tmp);
+			}
+			node_type *Tree(node_type *temp)
+			{
+				while (temp->left != NULL)
+					temp = temp->left;
+				return (temp);
+			}
+			node_type	*delete_node(node_type *root, key_type key_)
+			{
+				if (root == NULL) return (NULL);
+				else if (key_ < root->_data.first)
+					root->left = delete_node(root->left, key_);
+				else if (key_ > root->_data.first)
+					root->right = delete_node(root->right, key_);
+				else
+				{
+					if (root->left == NULL && root->right == NULL)
+					{
+						node_alloc(this->_alloc).destroy(root);
+						node_alloc(this->_alloc).deallocate(root, 1);
+						root = NULL;
+						return (root);
+					}
+					else if (root->left == NULL)
+					{
+						node_type	*temp = root;
+						root = root->right;
+						root->parent = temp->parent;
+						node_alloc(this->_alloc).destroy(temp);
+						node_alloc(this->_alloc).deallocate(temp, 1);
+						temp = NULL;
+						return (root);
+					}
+					else if (root->right == NULL)
+					{
+						node_type	*temp = root;
+						root = root->left;
+						root->parent = temp->parent;
+						node_alloc(this->_alloc).destroy(temp);
+						node_alloc(this->_alloc).deallocate(temp, 1);
+						temp = NULL;
+						return (root);
+					}
+					else
+					{
+						node_type	*temp = Tree(root->right);
+						// key_type p = temp->_data.first;
+						root->right = delete_node(root->right , temp->_data.first);
+						// this->_alloc.construct(root->_data.first, p);
+						// node_alloc(this->_alloc).construct(root->_data.first, p);
+					}
+				}
+				// root = _reBalance(root);
+				return (root);
+			}
+			void	erase(key_type key_)
+			{
+				delete_node(this->_data, key_);
 			}
 	};
 	
