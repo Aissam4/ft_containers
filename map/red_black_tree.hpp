@@ -53,12 +53,12 @@ namespace ft
 				if(root == NULL){
 					root = newnode;
 				}
-				else if (newnode->_data < root->_data)
+				else if (newnode->_data.first < root->_data.first)
 				{
 					root->left = insert_node(root->left, newnode);
 					root->left->parent = root;
 				}
-				else if (newnode->_data > root->_data){
+				else if (newnode->_data.first > root->_data.first){
 					root->right = insert_node(root->right, newnode);
 					root->right->parent = root;
 				}
@@ -187,6 +187,21 @@ namespace ft
 			void	setData( node_type *data)
 			{
 				this->_data = data;
+			}
+			node_type	*search_in_tree(node_type *root, key_type element)
+			{
+				node_type *tmp;
+				if (root == NULL || root->_data.first == element)
+					tmp = root;
+				else if (root->_data.first < element)
+					tmp = search_in_tree(root->right, element);
+				else if (root->_data.first > element)
+					tmp = search_in_tree(root->left, element);
+				return (tmp);
+			}
+			node_type	*search(key_type element ){
+				node_type *tmp = search_in_tree(this->_data, element);
+				return (tmp);
 			}
 	};
 	
