@@ -11,9 +11,9 @@ int main(void)
 		root.insert(ft::pair<int, int>(56, 0));
 		root.insert(ft::pair<int, int>(30, 0));
 		root.print();
-		root.erase(34);
-		std::cout << "=========== erase test ==========" << std::endl;
-		root.print();
+		// root.erase(34);
+		// std::cout << "=========== erase test ==========" << std::endl;
+		// root.print();
 		// root.print();
 		// root.setData(root.right_rotate(root.getData()));
 		// std::cout << "-------------------------------------" << std::endl;

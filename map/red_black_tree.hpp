@@ -42,6 +42,7 @@ namespace ft
 			Allocator_type	_alloc;
 			size_type		_size;
 			key_compare		_comp;
+			int				_flag = 1;
 		public:
 			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL){
 				this->_size = 0;
@@ -61,7 +62,12 @@ namespace ft
 					root->right = insert_node(root->right, newnode);
 					root->right->parent = root;
 				}
-				// else if (newnode->_data.first == root->_data.first)
+				else if (newnode->_data.first == root->_data.first)
+				{
+					node_alloc(this->_alloc).destroy(newnode);
+					node_alloc(this->_alloc).deallocate(newnode, 1);
+					this->_flag = 0;
+				}
 
 				return (root);
 			}
@@ -158,7 +164,8 @@ namespace ft
 			{
 				node_type *node = creatNode(data);
 				this->_data = insert_node(this->_data, node);
-				balance(this->_data, node);
+				if (this->_flag)
+					balance(this->_data, node);
 			}
 			size_type getSize( void ){
 				return (this->_size);
@@ -250,13 +257,9 @@ namespace ft
 					else
 					{
 						node_type	*temp = Tree(root->right);
-						// key_type p = temp->_data.first;
 						root->right = delete_node(root->right , temp->_data.first);
-						// this->_alloc.construct(root->_data.first, p);
-						// node_alloc(this->_alloc).construct(root->_data.first, p);
 					}
 				}
-				// root = _reBalance(root);
 				return (root);
 			}
 			void	erase(key_type key_)
