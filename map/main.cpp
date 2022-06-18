@@ -10,6 +10,8 @@ int main(void)
 		root.insert(ft::pair<int, int>(32, 0));
 		root.insert(ft::pair<int, int>(56, 0));
 		root.insert(ft::pair<int, int>(30, 0));
+		root.insert(ft::pair<int, int>(30, 0));
+		root.insert(ft::pair<int, int>(30, 0));
 		root.print();
 		// root.erase(34);
 		// std::cout << "=========== erase test ==========" << std::endl;

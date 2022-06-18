@@ -42,12 +42,13 @@ namespace ft
 			Allocator_type	_alloc;
 			size_type		_size;
 			key_compare		_comp;
-			int				_flag = 1;
+			int				_flag;
 		public:
 			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL){
 				this->_size = 0;
 				this->_alloc = alloc;
 				this->_comp = comp;
+				this->_flag = 1;
 			}
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
@@ -78,6 +79,7 @@ namespace ft
 				node->left = node->right = node->parent = NULL;
 				this->_size++;
 				node->color = RED;
+				this->_flag = 1;
 				return (node);
 			}
 			void right_rotate(node_type*& root, node_type*& item)
