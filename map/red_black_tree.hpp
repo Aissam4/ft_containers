@@ -8,6 +8,7 @@
 
 
 #include "../utils/pair.hpp"
+#include <cstddef>
 
 namespace ft
 {
@@ -21,7 +22,7 @@ namespace ft
 			Node() : right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
 
-	template < class key, class T, class Compare = std::less<key>, class Allocator = std::allocator<std::pair<key,T> > >
+	template < class key, class T, class Compare = std::less<key>, class Allocator = std::allocator<ft::pair<key,T> > >
 	class RBTree
 	{
 		public:
@@ -77,7 +78,6 @@ namespace ft
 				node_type *node = node_alloc(this->_alloc).allocate(1);
 				node->_data = data;
 				node->left = node->right = node->parent = NULL;
-				this->_size++;
 				node->color = RED;
 				this->_flag = 1;
 				return (node);
@@ -166,10 +166,12 @@ namespace ft
 			{
 				node_type *node = creatNode(data);
 				this->_data = insert_node(this->_data, node);
+				this->_size++;
 				if (this->_flag)
 					balance(this->_data, node);
 			}
-			size_type getSize( void ){
+			size_type getSize( void )
+			{
 				return (this->_size);
 			}
 			void DisplayTree(node_type *root, int space)
@@ -188,11 +190,13 @@ namespace ft
 					std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
 				DisplayTree(root->left, space);
 			}
-			void	print( void ){
+			void	print( void )
+			{
 				node_type *tmp = this->_data;
 				DisplayTree(tmp, 7);
 			}
-			node_type	*getData( void ){
+			node_type	*getData( void )
+			{
 				return (this->_data);
 			}
 			void	setData( node_type *data)
@@ -210,7 +214,8 @@ namespace ft
 					tmp = search_in_tree(root->left, element);
 				return (tmp);
 			}
-			node_type	*search(key_type element ){
+			node_type	*search(key_type element )
+			{
 				node_type *tmp = search_in_tree(this->_data, element);
 				return (tmp);
 			}
