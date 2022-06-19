@@ -6,12 +6,13 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:30:19 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/18 16:44:17 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:22:35 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LEXICOGrapHICAL_COMPARE_HPP
-#define __LEXICOGrapHICAL_COMPARE_HPP
+#ifndef __LEXICOGRAPHICAL_COMPARE_HPP
+#define __LEXICOGRAPHICAL_COMPARE_HPP
+
 namespace ft{
 	
 	template< class InputIt1, class InputIt2 >

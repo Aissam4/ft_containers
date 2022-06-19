@@ -1,5 +1,6 @@
 #ifndef __MAPITERATOR_HPP__
 #define __MAPITERATOR_HPP__
+#include "red_black_tree.hpp"
 namespace ft
 {
 	template < typename T, typename Pointer, typename Reference, class C >
@@ -13,7 +14,7 @@ namespace ft
 		typedef T			value_type;
 		typedef Pointer		pointer;
 		typedef Reference	reference;
-		typedef node<T, C>*	node_pointer;
+		typedef Node<T, C>*	node_pointer;
 		typedef std::bidirectional_iterator_tag				iterator_category;
 	protected:
 		node_pointer	ptr;
