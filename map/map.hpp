@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 01:54:35 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:16:41 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ namespace ft
 			typedef ReverseMapIterator<iterator>								reverseIterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
-			
+
 		private:
 			ft::RBTree<key_type, map_type>	_tree;
 			size_type						_size;
@@ -55,20 +55,31 @@ namespace ft
 				this->_node_alloc = node_alloc();
 				this->_comp = key_compare();
 			}
-			map(const Compare& comp, const Allocator& alloc = Allocator()){
+			map(const Compare& comp, const Allocator& alloc = Allocator())
+			{
 				this->_comp = comp;
 				this->_alloc = alloc;
 				this->_size = 0;
 				this->_node_alloc = node_alloc();
 			}
-			map (const map &obj){
+			map (const map &obj)
+			{
 				this->_alloc = obj._alloc;
 				this->_comp = obj._comp;
 				this->_size = obj._size;
 				this->_node_alloc = obj._node_alloc;
-				_tree(NULL);
 				*this = obj;
 			}
+			map( const map& other, const Allocator& alloc )
+			{
+				this->_alloc = alloc;
+				this->_comp = obj._comp;
+				this->_size = obj._size;
+				this->_node_alloc = obj._node_alloc;
+				*this = obj;
+			}
+			
+			
 	};
 }
 #endif 

@@ -49,6 +49,10 @@ namespace ft
 				this->_comp = comp;
 				this->_flag = 1;
 			}
+			~RBTree( void ){
+				this->_size = 0;
+				node_alloc(this->_alloc).deallocate(_data, _size);
+			}
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
 				if(root == NULL)
