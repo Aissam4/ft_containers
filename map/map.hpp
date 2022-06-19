@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 16:16:41 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/19 17:54:09 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "../utils/lexicographical_compare.hpp"
 #include "../utils/equal.hpp"
 #include <iostream>
+
 
 namespace ft
 {
@@ -73,10 +74,21 @@ namespace ft
 			map( const map& other, const Allocator& alloc )
 			{
 				this->_alloc = alloc;
-				this->_comp = obj._comp;
-				this->_size = obj._size;
-				this->_node_alloc = obj._node_alloc;
-				*this = obj;
+				this->_size = other._size;
+				this->_comp = other._comp;
+				this->_size = other._size;
+				this->_node_alloc = other._node_alloc;
+				*this = other;
+			}
+			template< class InputIt >
+			map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator() )
+			{
+				this->_comp = comp;
+				this->_alloc = alloc;
+				for (; first != last; first++){
+					this->_tree.insert(*first);
+					this->_size++;
+				}
 			}
 			
 			

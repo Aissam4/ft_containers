@@ -3,9 +3,9 @@
 
 #define RED 1
 #define BLACK 0
-#define NULL (void *)0
 #include <iostream>
 #include "../utils/pair.hpp"
+#include "RBTreeIterators.hpp"
 #include <cstddef>
 
 namespace ft
@@ -19,7 +19,6 @@ namespace ft
 			Node(ft::pair<KEY, T> data) : _data(data), right(NULL), left(NULL), parent(NULL), color(RED){};
 			Node() : right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
-
 	template < class key, class T, class Compare = std::less<key>, class Allocator = std::allocator<ft::pair<key,T> > >
 	class RBTree
 	{
@@ -36,6 +35,7 @@ namespace ft
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
 			typedef	Node<key, T>												node_type;
+			typedef RBTreeIter<value_type, node_type>							Iterator;
 		private:
 			node_type		*_data;
 			Allocator_type	_alloc;
@@ -187,9 +187,9 @@ namespace ft
 					std::cout<<" ";
 				value_type p = root->_data;
 				if (root->color == RED)
-					std::cout<< "\033[0;31mfirst -> " << p.first << "second -> \033[0m" << p.second << std::endl;
+					std::cout<< "\033[0;31mfirst -> ( " << p.first << " second -> \033[0m" << p.second << " )" << std::endl;
 				else
-					std::cout<< "first -> " << p.first << "second -> " << p.second << std::endl;
+					std::cout<< "first -> ( " << p.first << "second -> " << p.second << " )" << std::endl;
 				DisplayTree(root->left, space);
 			}
 			void	print( void )
@@ -274,6 +274,10 @@ namespace ft
 			void	erase(key_type key_)
 			{
 				delete_node(this->_data, key_);
+			}
+			Iterator begin( void )
+			{
+				return (Iterator(&this->_data->_data));
 			}
 	};
 	
