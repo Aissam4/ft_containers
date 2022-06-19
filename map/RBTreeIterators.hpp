@@ -28,12 +28,12 @@ namespace ft
 			typedef value_type& reference;
 			typedef const value_type& const_reference;
 			typedef const_reference iterator_category;
-			reference _current;
+			map_pointer _current;
 			~RBTreeIter() {}
 			RBTreeIter() : _current(nullptr) {}
 			RBTreeIter(RBTreeIter const &rhs) : _current(rhs._current) {}
 			// RBTreeIter(ConstRBTreeIter<T, M> const &rhs) : _current(rhs._current) {}
-			RBTreeIter(reference current) : _current(current) {}
+			RBTreeIter(map_pointer current) : _current(current) {}
 
 			RBTreeIter &operator=(RBTreeIter const &rhs)
 			{
@@ -53,8 +53,8 @@ namespace ft
 			bool operator!=(const RBTreeIter & rhs) { return (_current != rhs._current); }
 			// bool operator==(const ConstRBTreeIter<T, M> & rhs) { return (_current == rhs._current); }
 			// bool operator!=(const ConstRBTreeIter<T, M> & rhs) { return (_current != rhs._current); }
-			T *operator*() { return(&(_current->value)); }
-			T *operator->() { return(&(_current->value)); }
+			T *operator*() { return(&(_current->_data)); }
+			T *operator->() { return(&(_current->_data)); }
 
 			RBTreeIter &operator++()
 			{

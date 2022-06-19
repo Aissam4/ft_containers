@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 17:54:09 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/19 22:04:16 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ namespace ft
 			typedef ReverseMapIterator<iterator>								reverseIterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
-
+ 
 		private:
 			ft::RBTree<key_type, map_type>	_tree;
 			size_type						_size;

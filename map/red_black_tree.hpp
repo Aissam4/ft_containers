@@ -43,7 +43,8 @@ namespace ft
 			key_compare		_comp;
 			int				_flag;
 		public:
-			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL){
+			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL)
+			{
 				this->_size = 0;
 				this->_alloc = alloc;
 				this->_comp = comp;
@@ -120,20 +121,24 @@ namespace ft
 			{
 				node_type *parent_item = NULL;
 				node_type *grandParent_item = NULL;
-				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED)) {
+				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED))
+				{
 					parent_item = item->parent;
 					grandParent_item = item->parent->parent;
 					if (parent_item == grandParent_item->left)
 					{
 						node_type* uncle_item = grandParent_item->right;
-						if (uncle_item != NULL && uncle_item->color == RED) {
+						if (uncle_item != NULL && uncle_item->color == RED)
+						{
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
 							uncle_item->color = BLACK;
 							item = grandParent_item;
 						}
-						else {
-							if (item == parent_item->right) {
+						else
+						{
+							if (item == parent_item->right)
+							{
 								left_rotate(root, parent_item);
 								item = parent_item;
 								parent_item = item->parent;
@@ -145,13 +150,17 @@ namespace ft
 					} 
 					else {
 						node_type* uncle_item = grandParent_item->left;
-						if ((uncle_item != NULL) && (uncle_item->color == RED)) {
+						if ((uncle_item != NULL) && (uncle_item->color == RED))
+						{
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
 							uncle_item->color = BLACK;
 							item = grandParent_item;
-						}else {
-							if (item == parent_item->left) {
+						}
+						else
+						{
+							if (item == parent_item->left)
+							{
 								right_rotate(root, parent_item);
 								item = parent_item;
 								parent_item = item->parent;
@@ -275,9 +284,9 @@ namespace ft
 			{
 				delete_node(this->_data, key_);
 			}
-			Iterator begin( void )
+			Iterator	begin( void )
 			{
-				return (Iterator(&this->_data->_data));
+				return (Iterator(this->_data));
 			}
 	};
 	
