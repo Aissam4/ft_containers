@@ -48,7 +48,9 @@ namespace ft
         	// 	this->~RBTreeIter();
         	// 	return *new(this) RBTreeIter(rhs);
 			// }
-
+			map_pointer		base() const {
+				return (this->_current);
+			}
 			bool operator==(const RBTreeIter & rhs) { return (_current == rhs._current); }
 			bool operator!=(const RBTreeIter & rhs) { return (_current != rhs._current); }
 			// bool operator==(const ConstRBTreeIter<T, M> & rhs) { return (_current == rhs._current); }

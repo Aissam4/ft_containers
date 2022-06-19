@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/13 23:36:27 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/20 00:28:42 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ namespace ft
 				if (this->_elementNumber == this->_capacity)
 					reserve(this->_capacity * 2);
 				this->alloc.construct(this->_vector + this->_elementNumber, element);
-				this->_elementNumber += 1;
-								
+				this->_elementNumber += 1;	
 			}
 			iterator	erase(iterator position)
 			{

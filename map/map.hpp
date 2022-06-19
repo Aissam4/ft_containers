@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 22:04:16 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/20 00:32:03 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "reverseMapIterator.hpp"
 #include "red_black_tree.hpp"
+#include "RBTreeIterators.hpp"
 #include "../utils/lexicographical_compare.hpp"
 #include "../utils/equal.hpp"
 #include <iostream>
@@ -37,8 +38,9 @@ namespace ft
 			typedef typename Allocator::reference								reference;
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
-			typedef MapIterator<value_type, Node<key_type, map_type> >			iterator;
-			typedef ReverseMapIterator<iterator>								reverseIterator;
+			// typedef MapIterator<value_type, Node<key_type, map_type> >			iterator;
+			// typedef ReverseMapIterator<iterator>								reverseIterator;
+			typedef RBTreeIter<value_type, Node<key, T> >							iterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
  
@@ -85,13 +87,20 @@ namespace ft
 			{
 				this->_comp = comp;
 				this->_alloc = alloc;
-				for (; first != last; first++){
+				for (; first != last; first++)
+				{
 					this->_tree.insert(*first);
 					this->_size++;
 				}
 			}
-			
-			
+			void	insert(value_type val)
+			{
+				this->_tree.insert(val);
+			}
+			iterator begin( void )
+			{
+				return (this->_tree.begin());
+			}
 	};
 }
 #endif 
