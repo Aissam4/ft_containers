@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 01:50:43 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/19 01:54:35 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ namespace ft
 				this->_alloc = alloc;
 				this->_size = 0;
 				this->_node_alloc = node_alloc();
+			}
+			map (const map &obj){
+				this->_alloc = obj._alloc;
+				this->_comp = obj._comp;
+				this->_size = obj._size;
+				this->_node_alloc = obj._node_alloc;
+				_tree(NULL);
+				*this = obj;
 			}
 	};
 }
