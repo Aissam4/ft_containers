@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/19 01:05:18 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/19 01:50:43 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef __MAP_HPP__
 #define __MAP_HPP__
 
-#include "mapIterator.hpp"
+#include "reverseMapIterator.hpp"
 #include "red_black_tree.hpp"
 #include "../utils/lexicographical_compare.hpp"
 #include "../utils/equal.hpp"
@@ -36,9 +36,31 @@ namespace ft
 			typedef typename Allocator::reference								reference;
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
+			typedef MapIterator<value_type, Node<key_type, map_type> >			iterator;
+			typedef ReverseMapIterator<iterator>								reverseIterator;
+			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
+			
 		private:
-			ft::RBTree<key, T>	*tree;
+			ft::RBTree<key_type, map_type>	_tree;
+			size_type						_size;
+			Allocator_type					_alloc;
+			node_alloc						_node_alloc;
+			key_compare						_comp;
+		public:
+			map( void )
+			{
+				this->_size = 0;
+				this->_alloc = Allocator_type();
+				this->_node_alloc = node_alloc();
+				this->_comp = key_compare();
+			}
+			map(const Compare& comp, const Allocator& alloc = Allocator()){
+				this->_comp = comp;
+				this->_alloc = alloc;
+				this->_size = 0;
+				this->_node_alloc = node_alloc();
+			}
 	};
 }
 #endif 

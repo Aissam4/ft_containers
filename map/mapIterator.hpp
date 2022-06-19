@@ -1,66 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapIterator.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/19 01:33:53 by abarchil          #+#    #+#             */
+/*   Updated: 2022/06/19 01:33:53 by abarchil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #ifndef __MAPITERATOR_HPP__
 #define __MAPITERATOR_HPP__
-#include "red_black_tree.hpp"
+
+#define NULL (void *)0
+
 namespace ft
 {
-	template < typename T, typename Pointer, typename Reference, class C >
-	class MapIterator {
-	public:
-		typedef MapIterator<T, Pointer, Reference, C >	this_type;
-		typedef MapIterator<T,		 T*,	   T&, C >	iterator;
-		typedef MapIterator<T, const T*, const T&, C >	const_iterator;
-		typedef size_t		size_type;
-		typedef ptrdiff_t	difference_type;
-		typedef T			value_type;
-		typedef Pointer		pointer;
-		typedef Reference	reference;
-		typedef Node<T, C>*	node_pointer;
-		typedef std::bidirectional_iterator_tag				iterator_category;
-	protected:
-		node_pointer	ptr;
-	public:
-	
-		MapIterator() : ptr(NULL) { }
-		MapIterator(const node_pointer element) : ptr(element) {}
-		MapIterator(const iterator& x) : ptr(const_cast<node_pointer>(x.ptr)) { }
+	template < class T, class M >
+	class MapIterator
+	{
+		public:
+			typedef M map_type;
+			typedef map_type* map_pointer;
+			typedef T value_type;
+			typedef value_type* pointer;
+			typedef const value_type* const_pointer;
+			typedef value_type& reference;
+			typedef const value_type& const_reference;
+			typedef const_reference iterator_category;
+			map_pointer _current;
+			~MapIterator() {}
+			MapIterator() : _current(NULL) {}
+			MapIterator(MapIterator const &rhs) : _current(rhs._current) {}
+			// MapIterator(ConstMapIterator<T, M> const &rhs) : _current(rhs._current) {}
+			MapIterator(map_pointer current) : _current(current) {}
 
-		this_type&	operator=(const const_iterator& x) {
-			this->ptr = x.ptr;
-			return *this;
-		}
-		virtual ~MapIterator() {}
+			MapIterator &operator=(MapIterator const &rhs)
+			{
+				if (this == &rhs) return(*this);
+        		this->~MapIterator();
+        		return *new(this) MapIterator(rhs);
+			}
 
-		MapIterator	operator++(int) {
-			MapIterator	out(*this);
-			this->ptr = ptr->getnext();
-			return out;
-		}
-		MapIterator&	operator++() {
-			this->ptr = ptr->getnext();
-			return *this;
-		}
-		MapIterator	operator--(int) {
-			MapIterator	out(*this);
-			this->ptr = ptr->getprevious();
-			return out;
-		}
-		MapIterator&	operator--() {
-			this->ptr = ptr->getprevious();
-			return *this;
-		}
-		reference	operator*() {
-			return this->ptr->data;
-		}
-		pointer		operator->() {
-			return (&(this->ptr->data));
-		}
-		template<typename T2, typename P, typename R, class C2>
-		friend inline bool operator==(const this_type& lhs, const MapIterator<T2, P, R, C2>& rhs) {
-			return (lhs.ptr == rhs.ptr);
-		}
-		template<typename T2, typename P, typename R, class C2>
-		friend inline bool operator!=(const this_type& lhs, const MapIterator<T2, P, R, C2>& rhs) { return !(lhs == rhs); }
+			// MapIterator &operator=(ConstMapIterator<T, M> const &rhs)
+			// {
+			// 	if (this == &rhs) return(*this);
+        	// 	this->~MapIterator();
+        	// 	return *new(this) MapIterator(rhs);
+			// }
+
+			bool operator==(const MapIterator & rhs) { return (_current == rhs._current); }
+			bool operator!=(const MapIterator & rhs) { return (_current != rhs._current); }
+			// bool operator==(const ConstMapIterator<T, M> & rhs) { return (_current == rhs._current); }
+			// bool operator!=(const ConstMapIterator<T, M> & rhs) { return (_current != rhs._current); }
+			T *operator*() { return(&(_current->value)); }
+			T *operator->() { return(&(_current->value)); }
+
+			MapIterator &operator++()
+			{
+				if (_current->right)
+				{
+					_current = _current->right;
+					while (_current->left)
+						_current = _current->left;
+				}
+				else
+				{
+					while (_current->parent && _current == _current->parent->right)
+						_current = _current->parent;
+					_current = _current->parent;
+				}
+				return (*this);
+			}
+
+			MapIterator &operator--()
+			{
+				if (_current->left) 
+				{
+					_current = _current->left;
+					while (_current->right)
+						_current = _current->right;
+				}
+				else
+				{ 
+					while (_current->parent && _current == _current->parent->left)
+						_current = _current->parent;
+					_current = _current->parent;
+				}
+				return (*this);
+			}
+
+			MapIterator operator++(int)
+			{
+				MapIterator tmp(*this);
+				++(*this);
+				return (tmp);
+			}
+
+			MapIterator operator--(int)
+			{
+				MapIterator tmp(*this);
+				--(*this);
+				return (*this);
+			}
 	};
+
 
 }
 #endif

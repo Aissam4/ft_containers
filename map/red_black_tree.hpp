@@ -5,8 +5,6 @@
 #define BLACK 0
 #define NULL (void *)0
 #include <iostream>
-
-
 #include "../utils/pair.hpp"
 #include <cstddef>
 
