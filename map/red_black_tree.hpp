@@ -184,6 +184,15 @@ namespace ft
 				if (this->_flag)
 					balance(this->_data, node);
 			}
+			void insert(Iterator iter)
+			{
+				node_type *node = creatNode(iter._current->_data);
+				this->_end = node;
+				this->_data = insert_node(this->_data, node);
+				this->_size++;
+				if (this->_flag)
+					balance(this->_data, node);
+			}
 			size_type getSize( void )
 			{
 				return (this->_size);
