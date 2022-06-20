@@ -38,19 +38,21 @@ namespace ft
 			typedef RBTreeIter<value_type, node_type>							Iterator;
 		private:
 			node_type		*_data;
+			node_type		*_end;
 			Allocator_type	_alloc;
 			size_type		_size;
 			key_compare		_comp;
 			int				_flag;
 		public:
-			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL)
+			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL), _end(NULL)
 			{
 				this->_size = 0;
 				this->_alloc = alloc;
 				this->_comp = comp;
 				this->_flag = 1;
 			}
-			~RBTree( void ){
+			~RBTree( void )
+			{
 				this->_size = 0;
 				node_alloc(this->_alloc).deallocate(_data, _size);
 			}
@@ -176,6 +178,7 @@ namespace ft
 			void insert(value_type data)
 			{
 				node_type *node = creatNode(data);
+				this->_end = node;
 				this->_data = insert_node(this->_data, node);
 				this->_size++;
 				if (this->_flag)
@@ -287,6 +290,9 @@ namespace ft
 			Iterator	begin( void )
 			{
 				return (Iterator(this->_data));
+			}
+			Iterator end( void){
+				return (Iterator(this->_end));
 			}
 	};
 	

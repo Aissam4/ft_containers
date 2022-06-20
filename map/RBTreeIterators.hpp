@@ -19,7 +19,7 @@ namespace ft
 	template < class T, class M >
 	class RBTreeIter
 	{
-		public:
+		public :
 			typedef M map_type;
 			typedef map_type* map_pointer;
 			typedef T value_type;
