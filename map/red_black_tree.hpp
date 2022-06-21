@@ -39,6 +39,7 @@ namespace ft
 			typedef	node_type*													node_pointer;
 			typedef ft::RBTreeIter<value_type, node_type>								Iterator;
 			typedef	ft::reverse_iterator<Iterator>									reverse_iterator_;	
+			typedef	ft::reverse_iterator<const_pointer>									const_reverse_iterator_;	
 			typedef	ft::RBTreeIter<const value_type, node_type>						const_iterator;	
 		private:
 			node_type		*_data;
@@ -311,6 +312,7 @@ namespace ft
 			{
 				delete_node(this->_data, key_);
 			}
+			// red black tree iterators
 			Iterator	begin( void )
 			{
 				return (Iterator(this->_data));
@@ -324,6 +326,18 @@ namespace ft
 			}
 			const_iterator	cend( void ) const {
 				return (const_iterator(this->_end));
+			}
+			reverse_iterator_	rbegin( void ){
+				return (reverse_iterator_(end() - 1).base());
+			}
+			reverse_iterator_	rend( void ){
+				return (reverse_iterator_(begin() - 1).base());
+			}
+			const_reverse_iterator_	rbegin( void )const {
+				return (const_reverse_iterator_(end() - 1).base());
+			}
+			const_reverse_iterator_	rend( void ) const {
+				return (const_reverse_iterator_(begin() - 1).base());
 			}
 	};
 	
