@@ -41,7 +41,6 @@ namespace ft
         		this->~RBTreeIter();
         		return *new(this) RBTreeIter(rhs);
 			}
-
 			// RBTreeIter &operator=(ConstRBTreeIter<T, M> const &rhs)
 			// {
 			// 	if (this == &rhs) return(*this);

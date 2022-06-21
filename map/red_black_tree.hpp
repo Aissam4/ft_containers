@@ -59,13 +59,14 @@ namespace ft
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
 				if(root == NULL)
-					return newnode;
+					root = newnode;
 				else if (newnode->_data.first < root->_data.first)
 				{
 					root->left = insert_node(root->left, newnode);
 					root->left->parent = root;
 				}
-				else if (newnode->_data.first > root->_data.first){
+				else if (newnode->_data.first > root->_data.first)
+				{
 					root->right = insert_node(root->right, newnode);
 					root->right->parent = root;
 				}
@@ -75,7 +76,6 @@ namespace ft
 					node_alloc(this->_alloc).deallocate(newnode, 1);
 					this->_flag = 0;
 				}
-
 				return (root);
 			}
 			node_type	*creatNode(value_type data)
@@ -121,8 +121,8 @@ namespace ft
 			}
 			void balance(node_type*& root, node_type*& item)
 			{
-				node_type *parent_item = NULL;
-				node_type *grandParent_item = NULL;
+				node_type *parent_item = nullptr;
+				node_type *grandParent_item = nullptr;
 				while ((item != root) && (item->color != BLACK) && (item->parent->color == RED))
 				{
 					parent_item = item->parent;
@@ -130,7 +130,7 @@ namespace ft
 					if (parent_item == grandParent_item->left)
 					{
 						node_type* uncle_item = grandParent_item->right;
-						if (uncle_item != NULL && uncle_item->color == RED)
+						if (uncle_item != nullptr && uncle_item->color == RED)
 						{
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
@@ -150,9 +150,10 @@ namespace ft
 							item = parent_item;
 						}
 					} 
-					else {
+					else 
+					{
 						node_type* uncle_item = grandParent_item->left;
-						if ((uncle_item != NULL) && (uncle_item->color == RED))
+						if ((uncle_item != nullptr) && (uncle_item->color == RED))
 						{
 							grandParent_item->color = RED;
 							parent_item->color = BLACK;
