@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/21 02:41:46 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:12:37 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ namespace ft
 					this->_tree.insert(first);
 					this->_size++;
 				}
+				this->_tree.insert(first);
 			}
 			void	insert(value_type val)
 			{
@@ -103,12 +104,10 @@ namespace ft
 				it--;
 				return (it);
 			}
-			iterator end( void ){
-				return (this->_tree.end());
-			}
+			iterator end( void ) { return (this->_tree.end()); }
 			void	print( void ){
 				this->_tree.print();
 			}
 	};
 }
-#endif 
+#endif

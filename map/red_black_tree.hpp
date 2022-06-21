@@ -180,6 +180,7 @@ namespace ft
 			{
 				node_type *node = creatNode(data);
 				this->_end = node;
+				this->_end->left = this->_end->right = this->_end->parent = NULL;
 				this->_data = insert_node(this->_data, node);
 				this->_size++;
 				if (this->_flag)
@@ -301,7 +302,8 @@ namespace ft
 			{
 				return (Iterator(this->_data));
 			}
-			Iterator end( void){
+			Iterator end( void)
+			{
 				return (Iterator(this->_end));
 			}
 	};
