@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/21 21:04:17 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/21 21:13:55 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,18 @@ namespace ft
 				it--;
 				return (it);
 			}
-			reverse_iterator rend( void ) { return (this->_tree.rend());}
+			reverse_iterator rend( void )
+			{
+				iterator it = this->_tree.rend();
+				it--;
+				return (it);
+			}
 			
 			const_reverse_iterator	rend( void ) const 
 			{
-				return (this->_tree.rend());
+				const_iterator it = this->_tree.rend();
+				it--;
+				return (it);
 			}
 			
 			
