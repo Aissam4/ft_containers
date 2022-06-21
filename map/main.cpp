@@ -13,7 +13,10 @@ int main(void)
 		std_map.insert(std::pair<int, int>(4, 20));
 		std_map.insert(std::pair<int, int>(5, 2000));
 		std_map.insert(std::pair<int, int>(6, 200));
-		std::cout << std_map.begin()->first << std::endl;
+		std::map<int, int>::iterator it = std_map.begin();
+		it++;
+		it++;
+		std::cout << it->first << std::endl;
 	}
 
 	std::cout  << "ft map test\n" << std::endl;
@@ -22,6 +25,14 @@ int main(void)
 		ft_map.insert(ft::pair<int, int>(1, 10));
 		ft_map.insert(ft::pair<int, int>(2, 200));
 		ft_map.insert(ft::pair<int, int>(3, 2));
-		std::cout << ft_map.begin()->first << std::endl;
+		ft_map.insert(ft::pair<int, int>(4, 20));
+		ft_map.insert(ft::pair<int, int>(5, 2000));
+		ft_map.insert(ft::pair<int, int>(6, 200));
+		// ft_map.print();
+		ft::map<int, int>::iterator it = ft_map.begin();
+		// std::cout << "======" << std::endl;
+		it++;
+		it++;
+		std::cout << it->first << std::endl;
 	}
 }

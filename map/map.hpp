@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/20 20:28:04 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/21 02:41:46 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ namespace ft
 			}
 			iterator begin( void )
 			{
-				return (this->_tree.begin());
+				iterator it = this->_tree.begin();
+				it--;
+				return (it);
 			}
 			iterator end( void ){
 				return (this->_tree.end());
