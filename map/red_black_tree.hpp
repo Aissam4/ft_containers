@@ -5,8 +5,9 @@
 #define BLACK 0
 #include <iostream>
 #include "../utils/pair.hpp"
-#include "RBTreeIterators.hpp"
-#include "../vector/reverse_iterator.hpp"
+// #include "RBTreeIterators.hpp"
+#include "RBTreeReverseIterators.hpp"
+// #include "../vector/reverse_iterator.hpp"
 #include <cstddef>
 
 namespace ft
@@ -37,10 +38,12 @@ namespace ft
 			typedef	size_t														size_type;
 			typedef	Node<key, T>												node_type;
 			typedef	node_type*													node_pointer;
-			typedef ft::RBTreeIter<value_type, node_type>								Iterator;
-			typedef	ft::reverse_iterator<Iterator>									reverse_iterator_;	
-			typedef	ft::reverse_iterator<const_pointer>									const_reverse_iterator_;	
-			typedef	ft::RBTreeIter<const value_type, node_type>						const_iterator;	
+			typedef ft::RBTreeIter<value_type, node_type>						Iterator;
+			typedef	ft::RBTreeIter<const value_type, node_type>					const_iterator;
+			typedef	ft::ReverseRBTreeIter<Iterator>								reverse_iterator;
+			typedef	ft::ReverseRBTreeIter<const_pointer>								const_reverse_iterator;
+			// typedef	ft::reverse_iterator<Iterator>									reverse_iterator_;	
+			// typedef	ft::reverse_iterator<const_pointer>									const_reverse_iterator_;
 		private:
 			node_type		*_data;
 			node_type		*_end;
@@ -327,20 +330,19 @@ namespace ft
 			const_iterator	cend( void ) const {
 				return (const_iterator(this->_end));
 			}
-			reverse_iterator_	rbegin( void )
+			reverse_iterator	rbegin( void )
 			{
-				return (reverse_iterator_(end() - 1).base());
+				return (reverse_iterator(this->end()));
 			}
-			reverse_iterator_	rend( void ){
-				return (reverse_iterator_(begin() - 1).base());
+			reverse_iterator	rend( void ){
+				return (reverse_iterator(begin()));
 			}
-			const_reverse_iterator_	rbegin( void )const {
-				return (const_reverse_iterator_(cend() - 1).base());
+			const_reverse_iterator	rbegin( void )const {
+				return (const_reverse_iterator(this->cend()));
 			}
-			const_reverse_iterator_	rend( void ) const {
-				return (const_reverse_iterator_(cbegin() - 1).base());
+			const_reverse_iterator	rend( void ) const {
+				return (const_reverse_iterator(this->cbegin()));
 			}
 	};
-	
 };
 #endif
