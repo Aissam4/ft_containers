@@ -6,6 +6,7 @@
 #include <iostream>
 #include "../utils/pair.hpp"
 #include "RBTreeIterators.hpp"
+#include "../vector/reverse_iterator.hpp"
 #include <cstddef>
 
 namespace ft
@@ -35,7 +36,10 @@ namespace ft
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
 			typedef	size_t														size_type;
 			typedef	Node<key, T>												node_type;
-			typedef RBTreeIter<value_type, node_type>							Iterator;
+			typedef	node_type*													node_pointer;
+			typedef ft::RBTreeIter<value_type, node_type>								Iterator;
+			typedef	ft::reverse_iterator<Iterator>									reverse_iterator_;	
+			typedef	ft::RBTreeIter<const value_type, node_type>						const_iterator;	
 		private:
 			node_type		*_data;
 			node_type		*_end;
@@ -195,6 +199,15 @@ namespace ft
 				if (this->_flag)
 					balance(this->_data, node);
 			}
+			void insert(const_iterator iter)
+			{
+				node_type *node = creatNode(iter._current->_data);
+				this->_end = node;
+				this->_data = insert_node(this->_data, node);
+				this->_size++;
+				if (this->_flag)
+					balance(this->_data, node);
+			}
 			size_type getSize( void )
 			{
 				return (this->_size);
@@ -305,6 +318,12 @@ namespace ft
 			Iterator end( void)
 			{
 				return (Iterator(this->_end));
+			}
+			const_iterator	cbegin( void ) const {
+				return (const_iterator(this->_data));
+			}
+			const_iterator	cend( void ) const {
+				return (const_iterator(this->_end));
 			}
 	};
 	

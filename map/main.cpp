@@ -30,7 +30,7 @@ int main(void)
 		ft_map.insert(ft::pair<int, int>(5, 5));
 		ft_map.insert(ft::pair<int, int>(6, 6));
 		std::cout << "first element =>" << ft_map.begin()->first << std::endl;
-		ft::map<int , int> map(ft_map.begin(),ft_map.end());
+		ft::map<int , int> map(ft_map.cbegin(),ft_map.cend());
 		map.print();
 
 		// ft::map<int, int>::iterator it = ft_map.begin();

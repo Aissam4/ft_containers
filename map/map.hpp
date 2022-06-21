@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/21 17:12:37 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:37:52 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 			typedef RBTreeIter<value_type, Node<key, T> >							iterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
- 
+			typedef	typename ft::RBTree<key, T>::const_iterator							const_iterator;
 		private:
 			ft::RBTree<key_type, map_type>	_tree;
 			size_type						_size;
@@ -104,8 +104,20 @@ namespace ft
 				it--;
 				return (it);
 			}
-			iterator end( void ) { return (this->_tree.end()); }
-			void	print( void ){
+			const_iterator cbegin( void )
+			{
+				const_iterator it = this->_tree.cbegin();
+				it--;
+				return (it);
+			}
+			iterator end( void ) { return (this->_tree.end());}
+			
+			const_iterator	cend( void )
+			{
+				return (this->_tree.cend());}
+				
+			void	print( void )
+			{
 				this->_tree.print();
 			}
 	};
