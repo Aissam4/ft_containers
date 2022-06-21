@@ -327,17 +327,18 @@ namespace ft
 			const_iterator	cend( void ) const {
 				return (const_iterator(this->_end));
 			}
-			reverse_iterator_	rbegin( void ){
+			reverse_iterator_	rbegin( void )
+			{
 				return (reverse_iterator_(end() - 1).base());
 			}
 			reverse_iterator_	rend( void ){
 				return (reverse_iterator_(begin() - 1).base());
 			}
 			const_reverse_iterator_	rbegin( void )const {
-				return (const_reverse_iterator_(end() - 1).base());
+				return (const_reverse_iterator_(cend() - 1).base());
 			}
 			const_reverse_iterator_	rend( void ) const {
-				return (const_reverse_iterator_(begin() - 1).base());
+				return (const_reverse_iterator_(cbegin() - 1).base());
 			}
 	};
 	

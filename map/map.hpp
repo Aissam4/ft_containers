@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/21 17:37:52 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:10:36 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "RBTreeIterators.hpp"
 #include "../utils/lexicographical_compare.hpp"
 #include "../utils/equal.hpp"
+#include "../vector/reverse_iterator.hpp"
 #include <iostream>
 
 
@@ -38,12 +39,14 @@ namespace ft
 			typedef typename Allocator::reference								reference;
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
-			// typedef MapIterator<value_type, Node<key_type, map_type> >			iterator;
-			// typedef ReverseMapIterator<iterator>								reverseIterator;
-			typedef RBTreeIter<value_type, Node<key, T> >							iterator;
+			typedef ft::RBTreeIter<value_type, Node<key, T> >							iterator;
+			
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
-			typedef	typename ft::RBTree<key, T>::const_iterator							const_iterator;
+			typedef	typename ft::RBTree<key, T>::const_iterator					const_iterator_;
+			typedef	typename ft::reverse_iterator<iterator>						reverse_iterator_;		
+			typedef	typename ft::reverse_iterator<const_iterator_>						const_reverse_iterator_;		
+			
 		private:
 			ft::RBTree<key_type, map_type>	_tree;
 			size_type						_size;
@@ -98,28 +101,50 @@ namespace ft
 			{
 				this->_tree.insert(val);
 			}
+			void	print( void )
+			{
+				this->_tree.print();
+			}
 			iterator begin( void )
 			{
 				iterator it = this->_tree.begin();
 				it--;
 				return (it);
 			}
-			const_iterator cbegin( void )
+			const_iterator_ cbegin( void ) const 
 			{
-				const_iterator it = this->_tree.cbegin();
+				const_iterator_ it = this->_tree.cbegin();
 				it--;
 				return (it);
 			}
 			iterator end( void ) { return (this->_tree.end());}
 			
-			const_iterator	cend( void )
+			const_iterator_	cend( void ) const 
 			{
-				return (this->_tree.cend());}
-				
-			void	print( void )
-			{
-				this->_tree.print();
+				return (this->_tree.cend());
 			}
+			
+			reverse_iterator_ rbegin( void )
+			{
+				reverse_iterator_ it = this->_tree.rbegin();
+				// it--;
+				return (it);
+			}
+			const_reverse_iterator_ rbegin( void ) const 
+			{
+				const_reverse_iterator_ it = this->_tree.rbegin();
+				// it--;
+				return (it);
+			}
+			reverse_iterator_ rend( void ) { return (this->_tree.rend());}
+			
+			const_reverse_iterator_	rend( void ) const 
+			{
+				return (this->_tree.rend());
+			}
+			
+			
+				
 	};
 }
 #endif
