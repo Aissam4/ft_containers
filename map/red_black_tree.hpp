@@ -209,7 +209,7 @@ namespace ft
 				if (this->_flag)
 					balance(this->_data, node);
 			}
-			size_type getSize( void )
+			size_type getSize( void ) const 
 			{
 				return (this->_size);
 			}

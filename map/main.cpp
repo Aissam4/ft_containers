@@ -45,25 +45,18 @@ int main(void)
 	// std::cout << "rbegin of std::map => " << it4_->first << std::endl;
 
 	/*********************** erase test ***********************/
-	std::map<int, int> std_map;
-	ft::map<int, int> ft_map;
-	for (int i = 0; i < 10; i++){
-		std_map.insert(std::pair<int, int>(i, i));
-		ft_map.insert(ft::pair<int, int> (i, i));
-	}
-	std::cout << "ft_map" << std::endl;
-	ft_map.print();
-	std::cout<< "std_map" << std::endl;
-	for (size_t i = 0; i < std_map.size(); i++)
-		std::cout << std_map[i] << std::endl;
-	std::cout << "after insertion\n";
 	ft::map<int, int> mp;
 	mp.insert(ft::pair<int , int>(10, 10));
 	mp.insert(ft::pair<int , int>(12, 10));
 	mp.insert(ft::pair<int , int>(13, 10));
 	mp.insert(ft::pair<int , int>(14, 10));
-	ft::map<int , int>::iterator it = mp.begin();
-	it++;
-	mp.erase(mp.begin(), it);
-	mp.print();
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.erase(mp.begin());
+	std::cout << mp.empty() << std::endl;
+	std::cout << mp.size() << std::endl;
+	// mp.print();
 }
