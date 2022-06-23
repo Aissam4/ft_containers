@@ -51,11 +51,13 @@ int main(void)
 		std_map.insert(std::pair<int, int>(i, i));
 		ft_map.insert(ft::pair<int, int> (i, i));
 	}
+	std::cout << "ft_map" << std::endl;
 	ft_map.print();
-	std_map.erase(5);
-	ft_map.erase(1);
+	std::cout<< "std_map" << std::endl;
 	for (size_t i = 0; i < std_map.size(); i++)
 		std::cout << std_map[i] << std::endl;
+	std::cout << "after insertion\n";
+	ft_map.insert(ft_map.begin(), ft::pair<int, int> (22, 22));
 	ft_map.print();
 	//the number 1 and 5 doesnt erase
 	//try to erase it with iterators

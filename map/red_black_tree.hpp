@@ -202,6 +202,11 @@ namespace ft
 				if (this->_flag)
 					balance(&this->_data, node);
 			}
+			void	insert_in_position(Iterator position, const value_type &val)
+			{
+				position._current->_data.first = val.first;
+				position._current->_data.second = val.second;
+			}
 			void insert(const_iterator iter)
 			{
 				node_type *node = creatNode(iter._current->_data);
