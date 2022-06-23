@@ -42,8 +42,6 @@ namespace ft
 			typedef	ft::RBTreeIter<const value_type, node_type>					const_iterator;
 			typedef	ft::ReverseRBTreeIter<Iterator>								reverse_iterator;
 			typedef	ft::ReverseRBTreeIter<const_pointer>								const_reverse_iterator;
-			// typedef	ft::reverse_iterator<Iterator>									reverse_iterator_;	
-			// typedef	ft::reverse_iterator<const_pointer>									const_reverse_iterator_;
 		private:
 			node_type		*_data;
 			node_type		*_end;

@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/23 01:51:01 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:58:22 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,12 @@ namespace ft
 			typedef typename Allocator::reference								reference;
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<key, T> >::other 	node_alloc;
-			typedef ft::RBTreeIter<value_type, Node<key, T> >							iterator;
-			
+			typedef ft::RBTreeIter<value_type, Node<key, T> >					iterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
 			typedef	typename ft::RBTree<key, T>::const_iterator					const_iterator;
 			typedef	typename ft::RBTree<key, T>::reverse_iterator				reverse_iterator;		
-			typedef	typename ft::reverse_iterator<const_iterator>				const_reverse_iterator;		
-			
+			typedef	typename ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 		private:
 			ft::RBTree<key_type, map_type>	_tree;
 			size_type						_size;
