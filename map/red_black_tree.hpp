@@ -311,7 +311,8 @@ namespace ft
 						node_type	*temp = Min(this->_data);
 						key_type p = temp->_data.first;
 						root->right = delete_node(root->right , p);
-						this->_data->_data.first = p;
+						this->_data->_data.first = 0;
+						this->_data->_data.second = 0;
 					}
 				}
 				return (root);

@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/23 23:33:26 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/23 23:40:05 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,12 @@ namespace ft
 			void	erase(inputIter iter){
 				this->_tree.erase(iter->first);
 			}
-			
+			template <class inputIter>
+			void	erase(inputIter first, inputIter last)
+			{
+				for (; first != last; first++)
+					this->_tree.erase(first->first);
+			}
 			void	print( void )
 			{
 				this->_tree.print();

@@ -62,6 +62,8 @@ int main(void)
 	mp.insert(ft::pair<int , int>(12, 10));
 	mp.insert(ft::pair<int , int>(13, 10));
 	mp.insert(ft::pair<int , int>(14, 10));
-	mp.erase(--mp.end());
+	ft::map<int , int>::iterator it = mp.begin();
+	it++;
+	mp.erase(mp.begin(), it);
 	mp.print();
 }
