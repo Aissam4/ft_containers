@@ -95,6 +95,7 @@ namespace ft
 				this->_flag = 1;
 				return (node);
 			}
+
 			void right_rotate(node_type*& root, node_type*& item)
 			{
 				node_type* parent_left = item->left;
@@ -201,7 +202,7 @@ namespace ft
 				this->_data = insert_node(this->_data, node);
 				this->_size++;
 				if (this->_flag)
-					balance(this->_data, node);
+					balance(&this->_data, node);
 			}
 			void insert(const_iterator iter)
 			{
@@ -315,14 +316,27 @@ namespace ft
 			{
 				delete_node(this->_data, key_);
 			}
-			// red black tree iterators
-			Iterator	begin( void )
+			node_type *Max(node_type *root)
 			{
-				return (Iterator(this->_data));
+				while (root->right)
+					root = root->right;
+				return (root);
 			}
-			Iterator end( void)
+			node_type *Min(node_type *root)
 			{
-				return (Iterator(this->_end));
+				while (root->left)
+					root = root->left;
+				return (root);
+			}
+			Iterator	end( void )
+			{
+				node_type *tmp = this->_data;
+				return Iterator(Max(tmp));
+			}
+			Iterator begin( void)
+			{
+				node_type *tmp = this->_data;
+				return Iterator(Min(tmp));
 			}
 			const_iterator	cbegin( void ) const {
 				return (const_iterator(this->_data));
