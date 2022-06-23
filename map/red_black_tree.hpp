@@ -260,11 +260,17 @@ namespace ft
 				node_type *tmp = search_in_tree(this->_data, element);
 				return (tmp);
 			}
-			node_type *Tree(node_type *temp)
+			node_type *Max(node_type *root)
 			{
-				while (temp->left != NULL)
-					temp = temp->left;
-				return (temp);
+				while (root->right)
+					root = root->right;
+				return (root);
+			}
+			node_type *Min(node_type *root)
+			{
+				while (root->left)
+					root = root->left;
+				return (root);
 			}
 			node_type	*delete_node(node_type *root, key_type key_)
 			{
@@ -304,8 +310,10 @@ namespace ft
 					}
 					else
 					{
-						node_type	*temp = Tree(root->right);
-						root->right = delete_node(root->right , temp->_data.first);
+						node_type	*temp = Min(this->_data);
+						key_type p = temp->_data.first;
+						root->right = delete_node(root->right , p);
+						this->_data->_data.first = p;
 					}
 				}
 				return (root);
@@ -314,17 +322,9 @@ namespace ft
 			{
 				delete_node(this->_data, key_);
 			}
-			node_type *Max(node_type *root)
+			void	erase(Iterator val)
 			{
-				while (root->right)
-					root = root->right;
-				return (root);
-			}
-			node_type *Min(node_type *root)
-			{
-				while (root->left)
-					root = root->left;
-				return (root);
+				delete_node(this->_data, val->_current.first);
 			}
 			Iterator	end( void )
 			{
