@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/23 22:34:13 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/23 23:33:26 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,15 @@ namespace ft
 					this->_tree.insert(first);
 				}
 			}
-			void erase(const key_type &key_){
+			size_t erase(const key_type &key_){
 				this->_tree.erase(key_);
+				return (this->_tree.getSize());
 			}
+			template <class inputIter>
+			void	erase(inputIter iter){
+				this->_tree.erase(iter->first);
+			}
+			
 			void	print( void )
 			{
 				this->_tree.print();

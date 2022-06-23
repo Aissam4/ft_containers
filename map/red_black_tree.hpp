@@ -195,6 +195,7 @@ namespace ft
 			}
 			void	insert_in_position(Iterator position, const value_type &val)
 			{
+				this->_size++;
 				position._current->_data.first = val.first;
 				position._current->_data.second = val.second;
 			}
@@ -317,10 +318,12 @@ namespace ft
 			}
 			void	erase(key_type key_)
 			{
+				this->_size--;
 				delete_node(this->_data, key_);
 			}
 			void	erase(Iterator val)
 			{
+				this->_size--;
 				delete_node(this->_data, val->_current.first);
 			}
 			Iterator	end( void )
