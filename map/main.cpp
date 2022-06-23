@@ -57,8 +57,14 @@ int main(void)
 	for (size_t i = 0; i < std_map.size(); i++)
 		std::cout << std_map[i] << std::endl;
 	std::cout << "after insertion\n";
-	ft_map.insert(ft_map.begin(), ft::pair<int, int> (22, 22));
-	ft_map.print();
+	// ft_map.insert(std_map.begin());
+	ft::map<int, int> mp;
+	mp.insert(ft::pair<int , int>(10, 10));
+	mp.insert(ft::pair<int , int>(12, 10));
+	mp.insert(ft::pair<int , int>(13, 10));
+	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft_map.begin(), ft_map.end());
+	mp.print();
 	//the number 1 and 5 doesnt erase
 	//try to erase it with iterators
 }

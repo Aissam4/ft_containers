@@ -193,21 +193,13 @@ namespace ft
 				if (this->_flag)
 					balance(this->_data, node);
 			}
-			void insert(Iterator iter)
-			{
-				node_type *node = creatNode(iter._current->_data);
-				this->_end = node;
-				this->_data = insert_node(this->_data, node);
-				this->_size++;
-				if (this->_flag)
-					balance(&this->_data, node);
-			}
 			void	insert_in_position(Iterator position, const value_type &val)
 			{
 				position._current->_data.first = val.first;
 				position._current->_data.second = val.second;
 			}
-			void insert(const_iterator iter)
+			template<class InputIter>
+			void insert(InputIter iter)
 			{
 				node_type *node = creatNode(iter._current->_data);
 				this->_end = node;
