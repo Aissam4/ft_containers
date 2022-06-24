@@ -6,11 +6,11 @@
 #    By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/15 12:58:51 by abarchil          #+#    #+#              #
-#    Updated: 2022/06/25 00:15:42 by abarchil         ###   ########.fr        #
+#    Updated: 2022/06/25 00:50:35 by abarchil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILE = set/main.cpp
+SRC_FILE = vector_test.cpp
 OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 NAME = Containers
