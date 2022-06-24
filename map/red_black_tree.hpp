@@ -5,9 +5,7 @@
 #define BLACK 0
 #include <iostream>
 #include "../utils/pair.hpp"
-// #include "RBTreeIterators.hpp"
 #include "RBTreeReverseIterators.hpp"
-// #include "../vector/reverse_iterator.hpp"
 #include <cstddef>
 
 namespace ft
@@ -244,7 +242,7 @@ namespace ft
 			}
 			node_type	*search_in_tree(node_type *root, key_type element)
 			{
-				node_type *tmp;
+				node_type *tmp = NULL;
 				if (root == NULL || root->_data.first == element)
 					tmp = root;
 				else if (root->_data.first < element)
@@ -253,7 +251,7 @@ namespace ft
 					tmp = search_in_tree(root->left, element);
 				return (tmp);
 			}
-			node_type	*search(key_type element )
+			node_type	*search(key_type element)
 			{
 				node_type *tmp = search_in_tree(this->_data, element);
 				return (tmp);

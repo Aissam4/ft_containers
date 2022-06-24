@@ -49,14 +49,15 @@ int main(void)
 	mp.insert(ft::pair<int , int>(10, 10));
 	mp.insert(ft::pair<int , int>(12, 10));
 	mp.insert(ft::pair<int , int>(13, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
-	mp.insert(ft::pair<int , int>(14, 10));
+	mp.insert(ft::pair<int , int>(14, 1000));
 	mp.erase(mp.begin());
 	std::cout << mp.empty() << std::endl;
 	std::cout << mp.size() << std::endl;
+	if (mp.empty())
+		std::cout << "empty\n";
+	else
+		std::cout << "not empty \n";
+	std::cout << mp.max_size() << std::endl;
+	std::cout << mp[14] << std::endl;
 	// mp.print();
 }
