@@ -58,6 +58,6 @@ int main(void)
 	else
 		std::cout << "not empty \n";
 	std::cout << mp.max_size() << std::endl;
-	std::cout << mp[14] << std::endl;
+	std::cout << mp[12] << " | " << mp.at(12) << std::endl;
 	// mp.print();
 }

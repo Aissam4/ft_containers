@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/24 17:51:55 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/24 17:57:42 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,14 @@ namespace ft
 			{
 				Node<key_type, map_type> *tmp = this->_tree.search(k);
 				return (tmp->_data.second);
+			}
+			map_type& at (const key_type& k)
+			{
+				return (operator[](k));
+			}
+			const map_type& at (const key_type& k) const
+			{
+				return (operator[](k));
 			}
 			void	print( void )
 			{
