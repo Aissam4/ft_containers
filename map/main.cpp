@@ -61,4 +61,5 @@ int main(void)
 	// while (1);
 	// mp.print();
 	std::cout << mp.size() << std::endl;
+	while (1);
 }

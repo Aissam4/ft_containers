@@ -59,6 +59,7 @@ namespace ft
 			{
 				this->_size = 0;
 			}
+		private:
 			node_type *insert_node(node_type *root, node_type	*newnode)
 			{
 				if(root == NULL)
@@ -81,6 +82,7 @@ namespace ft
 				}
 				return (root);
 			}
+
 			node_type	*creatNode(value_type data)
 			{
 				node_type *node = node_alloc(this->_alloc).allocate(1);
@@ -107,6 +109,7 @@ namespace ft
 				parent_left->right = item;
 				item->parent = parent_left;
 			}
+
 			void left_rotate(node_type*& root, node_type*& item)
 			{
 				node_type* parent_right = item->right;
@@ -123,6 +126,7 @@ namespace ft
 				parent_right->left = item;
 				item->parent = parent_right;
 			}
+
 			void balance(node_type*& root, node_type*& item)
 			{
 				node_type *parent_item = nullptr;
@@ -153,7 +157,7 @@ namespace ft
 							std::swap(parent_item->color, grandParent_item->color);
 							item = parent_item;
 						}
-					} 
+					}
 					else 
 					{
 						node_type* uncle_item = grandParent_item->left;
@@ -180,36 +184,14 @@ namespace ft
 				}
 				root->color = BLACK;
 			}
-			void insert(value_type data)
-			{
-				node_type *node = creatNode(data);
-				this->_end = node;
-				this->_end->left = this->_end->right = this->_end->parent = NULL;
-				this->_data = insert_node(this->_data, node);
-				this->_size++;
-				if (this->_flag)
-					balance(this->_data, node);
-			}
+
 			void	insert_in_position(Iterator position, const value_type &val)
 			{
 				this->_size++;
 				position._current->_data.first = val.first;
 				position._current->_data.second = val.second;
 			}
-			template<class InputIter>
-			void insert(InputIter iter)
-			{
-				node_type *node = creatNode(iter._current->_data);
-				this->_end = node;
-				this->_data = insert_node(this->_data, node);
-				this->_size++;
-				if (this->_flag)
-					balance(this->_data, node);
-			}
-			size_type getSize( void ) const 
-			{
-				return (this->_size);
-			}
+
 			void DisplayTree(node_type *root, int space)
 			{
 				if (root == NULL)
@@ -226,19 +208,7 @@ namespace ft
 					std::cout<< "first -> ( " << p.first << "second -> " << p.second << " )" << std::endl;
 				DisplayTree(root->left, space);
 			}
-			void	print( void )
-			{
-				node_type *tmp = this->_data;
-				DisplayTree(tmp, 7);
-			}
-			node_type	*getData( void )
-			{
-				return (this->_data);
-			}
-			void	setData( node_type *data)
-			{
-				this->_data = data;
-			}
+
 			node_type	*search_in_tree(node_type *root, key_type element)
 			{
 				node_type *tmp = NULL;
@@ -250,23 +220,21 @@ namespace ft
 					tmp = search_in_tree(root->left, element);
 				return (tmp);
 			}
-			node_type	*search(key_type element)
-			{
-				node_type *tmp = search_in_tree(this->_data, element);
-				return (tmp);
-			}
+
 			node_type *Max(node_type *root)
 			{
 				while (root->right)
 					root = root->right;
 				return (root);
 			}
+
 			node_type *Min(node_type *root)
 			{
 				while (root->left)
 					root = root->left;
 				return (root);
 			}
+
 			node_type	*delete_node(node_type *root, key_type key_)
 			{
 				if (root == NULL) return (NULL);
@@ -314,45 +282,110 @@ namespace ft
 				}
 				return (root);
 			}
+
+		public:
+			void insert(value_type data)
+			{
+				node_type *node = creatNode(data);
+				this->_end = node;
+				this->_end->left = this->_end->right = this->_end->parent = NULL;
+				this->_data = insert_node(this->_data, node);
+				this->_size++;
+				if (this->_flag)
+					balance(this->_data, node);
+			}
+
+			template<class InputIter>
+			void insert(InputIter iter)
+			{
+				node_type *node = creatNode(iter._current->_data);
+				this->_end = node;
+				this->_data = insert_node(this->_data, node);
+				this->_size++;
+				if (this->_flag)
+					balance(this->_data, node);
+			}
+
+			size_type getSize( void ) const 
+			{
+				return (this->_size);
+			}
+
+			void	print( void )
+			{
+				node_type *tmp = this->_data;
+				DisplayTree(tmp, 7);
+			}
+
+			node_type	*getData( void )
+			{
+				return (this->_data);
+			}
+
+			void	setData( node_type *data)
+			{
+				this->_data = data;
+			}
+
+			node_type	*search(key_type element)
+			{
+				node_type *tmp = search_in_tree(this->_data, element);
+				return (tmp);
+			}
+
 			void	erase(key_type key_)
 			{
 				this->_size--;
 				delete_node(this->_data, key_);
 			}
+
 			void	erase(Iterator val)
 			{
 				this->_size--;
 				delete_node(this->_data, val->_current.first);
 			}
+
 			Iterator	end( void )
 			{
 				node_type *tmp = this->_data;
 				return Iterator(Max(tmp));
 			}
+
 			Iterator begin( void)
 			{
 				node_type *tmp = this->_data;
 				return Iterator(Min(tmp));
 			}
-			const_iterator	cbegin( void ) const {
+
+			const_iterator	cbegin( void ) const
+			{
 				return (const_iterator(this->_data));
 			}
-			const_iterator	cend( void ) const {
+
+			const_iterator	cend( void ) const
+			{
 				return (const_iterator(this->_end));
 			}
+
 			reverse_iterator	rbegin( void )
 			{
 				return (reverse_iterator(this->end()));
 			}
+
 			reverse_iterator	rend( void ){
 				return (reverse_iterator(begin()));
 			}
-			const_reverse_iterator	rbegin( void )const {
+
+			const_reverse_iterator	rbegin( void )const
+			{
 				return (const_reverse_iterator(this->cend()));
 			}
-			const_reverse_iterator	rend( void ) const {
+
+			const_reverse_iterator	rend( void ) const
+			{
 				return (const_reverse_iterator(this->cbegin()));
 			}
+
 	};
 };
 #endif
