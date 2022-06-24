@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <stdio.h>
 int main(void)
 {
 	/******** itertaror Test ****************/
@@ -50,14 +51,14 @@ int main(void)
 	mp.insert(ft::pair<int , int>(12, 10));
 	mp.insert(ft::pair<int , int>(13, 10));
 	mp.insert(ft::pair<int , int>(14, 1000));
-	mp.erase(mp.begin());
-	std::cout << mp.empty() << std::endl;
-	std::cout << mp.size() << std::endl;
-	if (mp.empty())
-		std::cout << "empty\n";
-	else
-		std::cout << "not empty \n";
-	std::cout << mp.max_size() << std::endl;
-	std::cout << mp[12] << " | " << mp.at(12) << std::endl;
+	mp.insert(ft::pair<int , int>(16, 1000));
+	mp.insert(ft::pair<int , int>(15, 1000));
+	mp.insert(ft::pair<int , int>(188, 1000));
+	mp.insert(ft::pair<int , int>(11, 1000));
+	mp.print();
+	// mp.clear();
+	std::cout << "--------------------- after clear map -------------------\n";
+	// while (1);
 	// mp.print();
+	std::cout << mp.size() << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/24 17:57:42 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:37:54 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ namespace ft
 				this->_node_alloc = other._node_alloc;
 				*this = other;
 			}
+			~map( void ){
+				this->clear();
+			}
 			template< class InputIt >
 			map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator() )
 			{
@@ -122,6 +125,13 @@ namespace ft
 			{
 				for (; first != last; first++)
 					this->_tree.erase(first->first);
+			}
+			void	clear( void )
+			{
+				iterator it2 = this->_tree.end();
+				it2++;
+				erase(this->_tree.begin(), it2);
+				this->_tree.setData(NULL);
 			}
 			bool empty( void ) const
 			{
