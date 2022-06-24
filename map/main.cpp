@@ -56,10 +56,6 @@ int main(void)
 	mp.insert(ft::pair<int , int>(188, 1000));
 	mp.insert(ft::pair<int , int>(11, 1000));
 	mp.print();
-	// mp.clear();
 	std::cout << "--------------------- after clear map -------------------\n";
-	// while (1);
-	// mp.print();
 	std::cout << mp.size() << std::endl;
-	while (1);
 }

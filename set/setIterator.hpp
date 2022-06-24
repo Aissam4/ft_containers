@@ -14,8 +14,7 @@
 #ifndef __MAPITERATOR_HPP__
 #define __MAPITERATOR_HPP__
 
-#define NULL (void *)0
-
+#include <cstddef>
 namespace ft
 {
 	template < class T, class M >
@@ -31,6 +30,7 @@ namespace ft
 			typedef const value_type& const_reference;
 			typedef const_reference iterator_category;
 			map_pointer _current;
+
 			~MapIterator() {}
 			MapIterator() : _current(NULL) {}
 			MapIterator(MapIterator const &rhs) : _current(rhs._current) {}
@@ -42,6 +42,7 @@ namespace ft
         		this->~MapIterator();
         		return *new(this) MapIterator(rhs);
 			}
+
 			bool operator==(const MapIterator & rhs) { return (_current == rhs._current); }
 			bool operator!=(const MapIterator & rhs) { return (_current != rhs._current); }
 			T *operator*() { return(&(_current->value)); }
