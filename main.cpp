@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:48:37 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 23:04:20 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:39:56 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 void	set_test( void )
 {
 	ft::set<int> s;
+	std::set<int> s_;
+	for (int i  = 0; i < 25; i++){
+		int num = rand() % 200; 
+		s.insert(num);
+		s_.insert(num);
+	}
+	std::cout << "std set \n";
+	for (ft::set<int>::iterator it = s.begin(); it != --s.end(); it++){
+		std::cout << "set val : " << it.getVal() << std::endl;
+	}
+	std::cout << "ft set \n";
+	for (std::set<int>::iterator it = s_.begin(); it != --s_.end(); it++){
+		std::cout << "set val : " << *it << std::endl;
+	}
 	
 }
 // void	map_test( void )
