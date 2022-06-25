@@ -16,9 +16,11 @@ namespace ft
 			typedef Container									container_type;
 			typedef typename container_type::reference			reference;
 			typedef typename container_type::const_reference	const_reference;
-            explicit    stack (const container_type &_c = container_type()){
-                this->_container = _c;
+            stack (const container_type &_c = container_type())
+			{
+				this->_container = _c;
             }
+			~stack(){}
             bool                empty() const { return (!this->_container.size()); };
             size_t              size() const { return (this->_container.size()); };
             value_type&         top() { return (this->_container.back()); };

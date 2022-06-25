@@ -1,5 +1,5 @@
 #include "vector/vector.hpp"
-int main( void )
+void vector_test( void )
 {
 	ft::vector<int> vec_int;
 	for (size_t i = 0; i < 25; i++)

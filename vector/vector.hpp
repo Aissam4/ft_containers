@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:55:10 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 00:53:32 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:11:51 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ namespace ft
 			typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
 			vector( void )
 			{
-				this->_vector = this->alloc.allocate(1);
-				this->_capacity = 1;
+				this->_vector = nullptr;
+				this->_capacity = 0;
 				this->_elementNumber = 0;
 			}
 			vector(int capacity)
@@ -78,7 +78,8 @@ namespace ft
 			}
 			~vector()
 			{
-				clear();
+				if (this->_vector != nullptr)
+					clear();
 			}
 			T	at(size_t index) const
 			{
@@ -90,7 +91,7 @@ namespace ft
 			void	push_back(T &element)
 			{
 				if (this->_vector == NULL)
-					reserve(1);
+					reserve(1);	
 				if (this->_elementNumber == this->_capacity)
 					reserve(this->_capacity * 2);
 				this->alloc.construct(this->_vector + this->_elementNumber, element);
@@ -142,8 +143,8 @@ namespace ft
 			{
 				if (n > this->_capacity)
 				{
-					T*		temp = this->alloc.allocate(n);
-					if (this->_vector != NULL)
+					T*	temp = this->alloc.allocate(n);
+					if (this->_vector != nullptr)
 					{
 						for (unsigned int i = 0; i < size(); i++)
 						{
