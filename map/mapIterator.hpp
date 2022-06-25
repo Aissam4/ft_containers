@@ -14,7 +14,6 @@
 #ifndef __MAPITERATOR_HPP__
 #define __MAPITERATOR_HPP__
 
-#define NULL (void *)0
 
 namespace ft
 {
