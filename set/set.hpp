@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 22:54:46 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:24:25 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ namespace ft
 				this->_alloc = alloc;
 				this->_size = 0;
 				this->_node_alloc = node_alloc();
+				_tree = nullptr;
 			}
 
 			set (const set &obj)
@@ -85,7 +86,8 @@ namespace ft
 
 			~set( void )
 			{
-				this->clear();
+				if (this->_tree.getSize() != 0)
+					this->clear();
 			}
 
 			template< class InputIt >
