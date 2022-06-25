@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 
-#ifndef __MAPITERATOR_HPP__
-#define __MAPITERATOR_HPP__
+#ifndef __SETITERATOR_HPP__
+#define __SETITERATOR_HPP__
 
 #include <cstddef>
 namespace ft
 {
 	template < class T, class M >
-	class MapIterator
+	class SetIterator
 	{
 		public:
 			typedef M map_type;
@@ -31,24 +31,24 @@ namespace ft
 			typedef const_reference iterator_category;
 			map_pointer _current;
 
-			~MapIterator() {}
-			MapIterator() : _current(NULL) {}
-			MapIterator(MapIterator const &rhs) : _current(rhs._current) {}
-			MapIterator(map_pointer current) : _current(current) {}
+			~SetIterator() {}
+			SetIterator() : _current(NULL) {}
+			SetIterator(SetIterator const &rhs) : _current(rhs._current) {}
+			SetIterator(map_pointer current) : _current(current) {}
 
-			MapIterator &operator=(MapIterator const &rhs)
+			SetIterator &operator=(SetIterator const &rhs)
 			{
 				if (this == &rhs) return(*this);
-        		this->~MapIterator();
-        		return *new(this) MapIterator(rhs);
+        		this->~SetIterator();
+        		return *new(this) SetIterator(rhs);
 			}
 
-			bool operator==(const MapIterator & rhs) { return (_current == rhs._current); }
-			bool operator!=(const MapIterator & rhs) { return (_current != rhs._current); }
+			bool operator==(const SetIterator & rhs) { return (_current == rhs._current); }
+			bool operator!=(const SetIterator & rhs) { return (_current != rhs._current); }
 			T *operator*() { return(&(_current->value)); }
 			T *operator->() { return(&(_current->value)); }
 
-			MapIterator &operator++()
+			SetIterator &operator++()
 			{
 				if (_current->right)
 				{
@@ -65,7 +65,7 @@ namespace ft
 				return (*this);
 			}
 
-			MapIterator &operator--()
+			SetIterator &operator--()
 			{
 				if (_current->left) 
 				{
@@ -82,16 +82,16 @@ namespace ft
 				return (*this);
 			}
 
-			MapIterator operator++(int)
+			SetIterator operator++(int)
 			{
-				MapIterator tmp(*this);
+				SetIterator tmp(*this);
 				++(*this);
 				return (tmp);
 			}
 
-			MapIterator operator--(int)
+			SetIterator operator--(int)
 			{
-				MapIterator tmp(*this);
+				SetIterator tmp(*this);
 				--(*this);
 				return (*this);
 			}

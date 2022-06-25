@@ -17,7 +17,7 @@
 #define BLACK 0
 #include <iostream>
 #include "../utils/pair.hpp"
-#include "RBTreeReverseIterators.hpp"
+#include "RBTreeReverseIterators_set.hpp"
 #include <cstddef>
 
 namespace ft
@@ -46,10 +46,10 @@ namespace ft
 			typedef	size_t														size_type;
 			typedef	Node<T>														node_type;
 			typedef	node_type*													node_pointer;
-			typedef ft::RBTreeIter<value_type, node_type>						Iterator;
-			typedef	ft::RBTreeIter<const value_type, node_type>					const_iterator;
-			typedef	ft::ReverseRBTreeIter<Iterator>								reverse_iterator;
-			typedef	ft::ReverseRBTreeIter<const_pointer>						const_reverse_iterator;
+			typedef ft::RBTreeIterSet<value_type, node_type>						Iterator;
+			typedef	ft::RBTreeIterSet<const value_type, node_type>					const_iterator;
+			typedef	ft::ReverseRBTreeIterSet<Iterator>								reverse_iterator;
+			typedef	ft::ReverseRBTreeIterSet<const_pointer>						const_reverse_iterator;
 		private:
 			node_type		*_data;
 			node_type		*_end;

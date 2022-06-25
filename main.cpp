@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:48:37 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 23:39:56 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:51:30 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,25 @@
 #include <stack>
 #include "vector/vector.hpp"
 #include "stack/stack.hpp"
+#include "map/map.hpp
 
-// #include "map/map.hpp"
-#include "set/set.hpp"
-
-void	set_test( void )
+void	map_test( void )
 {
-	ft::set<int> s;
-	std::set<int> s_;
-	for (int i  = 0; i < 25; i++){
-		int num = rand() % 200; 
-		s.insert(num);
-		s_.insert(num);
+	ft::map<int, int> ft_map;
+	std::map<int, int> std_map;
+	for (size_t i = 0; i < 25; i++)
+	{
+		int num = rand() % 300;
+		ft_map.insert(ft::pair<int, int> (num, i));
+		std_map.insert(std::pair<int, int> (num, i));
 	}
-	std::cout << "std set \n";
-	for (ft::set<int>::iterator it = s.begin(); it != --s.end(); it++){
-		std::cout << "set val : " << it.getVal() << std::endl;
-	}
-	std::cout << "ft set \n";
-	for (std::set<int>::iterator it = s_.begin(); it != --s_.end(); it++){
-		std::cout << "set val : " << *it << std::endl;
-	}
-	
+	std::cout << "ft_map test\n" << std::endl;
+	for (ft::map<int, int>::iterator it = ft_map.begin() ; it != ft_map.end(); it++)
+		std::cout << "Map Key : " << it->first << " | Map Value : " << it->second << std::endl;
+	std::cout << "std_map test\n" << std::endl;
+	for (std::map<int, int>::iterator it = std_map.begin() ; it != --std_map.end(); it++)
+		std::cout << "Map Key : " << it->first << " | Map Value : " << it->second << std::endl;
 }
-// void	map_test( void )
-// {
-// 	ft::map<int, int> ft_map;
-// 	std::map<int, int> std_map;
-// 	for (size_t i = 0; i < 25; i++)
-// 	{
-// 		int num = rand() % 300;
-// 		ft_map.insert(ft::pair<int, int> (num, i));
-// 		std_map.insert(std::pair<int, int> (num, i));
-// 	}
-// 	std::cout << "ft_map test\n" << std::endl;
-// 	for (ft::map<int, int>::iterator it = ft_map.begin() ; it != ft_map.end(); it++)
-// 		std::cout << "Map Key : " << it->first << " | Map Value : " << it->second << std::endl;
-// 	std::cout << "std_map test\n" << std::endl;
-// 	for (std::map<int, int>::iterator it = std_map.begin() ; it != --std_map.end(); it++)
-// 		std::cout << "Map Key : " << it->first << " | Map Value : " << it->second << std::endl;
-// }
 
 void vector_test( void )
 {
@@ -97,7 +76,5 @@ int main( void )
 	std::cout << "---------------- STACK TEST ------------------\n";
 	stack_test();
 	std::cout << "---------------- MAP TEST ------------------\n";
-	// map_test();
-	std::cout << "---------------- SET TEST ------------------\n";
-	set_test();
+	map_test();
 }

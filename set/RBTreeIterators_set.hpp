@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RBTreeIter.hpp                                    :+:      :+:    :+:   */
+/*   RBTreeIterSet.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 
-#ifndef __RBTREEITERATORS_HPP__
-#define __RBTREEITERATORS_HPP__
+#ifndef __RBTREEITERATORS_SET_HPP__
+#define __RBTREEITERATORS_SET_HPP__
 #include <cstddef>
 namespace ft
 {
 	template < class T, class M >
-	class RBTreeIter
+	class RBTreeIterSet
 	{
 		public :
 			typedef M map_type;
@@ -29,29 +29,29 @@ namespace ft
 			typedef const value_type& const_reference;
 			typedef const_reference iterator_category;
 			map_pointer _current;
-			~RBTreeIter() {}
-			RBTreeIter() : _current(NULL) {}
-			RBTreeIter(RBTreeIter const &rhs) : _current(rhs._current) {}
-			RBTreeIter(map_pointer current) : _current(current) {}
+			~RBTreeIterSet() {}
+			RBTreeIterSet() : _current(NULL) {}
+			RBTreeIterSet(RBTreeIterSet const &rhs) : _current(rhs._current) {}
+			RBTreeIterSet(map_pointer current) : _current(current) {}
 
-			RBTreeIter &operator=(RBTreeIter const &rhs)
+			RBTreeIterSet &operator=(RBTreeIterSet const &rhs)
 			{
 				if (this == &rhs) return(*this);
-        		this->~RBTreeIter();
-        		return *new(this) RBTreeIter(rhs);
+        		this->~RBTreeIterSet();
+        		return *new(this) RBTreeIterSet(rhs);
 			}
 
 			map_pointer		base() const {
 				return (this->_current);
 			}
-			bool operator==(const RBTreeIter & rhs) { return (_current == rhs._current); }
-			bool operator!=(const RBTreeIter & rhs) { return (_current != rhs._current); }
+			bool operator==(const RBTreeIterSet & rhs) { return (_current == rhs._current); }
+			bool operator!=(const RBTreeIterSet & rhs) { return (_current != rhs._current); }
 			T *operator*() { return(&(_current->_data)); }
 			T *operator->() { return(&(_current->_data)); }
 			T	getVal( void ){
 				return (this->_current->_data);
 			}
-			RBTreeIter &operator++()
+			RBTreeIterSet &operator++()
 			{
 				if (_current->right)
 				{
@@ -68,7 +68,7 @@ namespace ft
 				return (*this);
 			}
 
-			RBTreeIter &operator--()
+			RBTreeIterSet &operator--()
 			{
 				if (_current->left) 
 				{
@@ -85,16 +85,16 @@ namespace ft
 				return (*this);
 			}
 
-			RBTreeIter operator++(int)
+			RBTreeIterSet operator++(int)
 			{
-				RBTreeIter tmp(*this);
+				RBTreeIterSet tmp(*this);
 				++(*this);
 				return (tmp);
 			}
 
-			RBTreeIter operator--(int)
+			RBTreeIterSet operator--(int)
 			{
-				RBTreeIter tmp(*this);
+				RBTreeIterSet tmp(*this);
 				--(*this);
 				return (*this);
 			}

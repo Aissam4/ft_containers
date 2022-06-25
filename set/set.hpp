@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 23:24:25 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:49:41 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 			typedef typename Allocator::reference								reference;
 			typedef typename Allocator::const_reference							const_reference;
 			typedef	typename Allocator::template rebind< Node<T> >::other	 	node_alloc;
-			typedef ft::RBTreeIter<value_type, Node<T> >						iterator;
+			typedef ft::RBTreeIterSet<value_type, Node<T> >						iterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
 			typedef	typename ft::RBTree<T>::const_iterator						const_iterator;
