@@ -351,8 +351,7 @@ namespace ft
 			void	erase(Iterator val)
 			{
 				this->_size--;
-				delete_node(this->_data, val->_current->_data);
-				std::cout << val.base()->_data << std::endl;
+				delete_node(this->_data, val.getVal());
 			}
 
 			Iterator	end( void )

@@ -29,7 +29,6 @@ namespace ft
 			typedef const value_type& const_reference;
 			typedef const_reference iterator_category;
 			map_pointer _current;
-
 			~RBTreeIter() {}
 			RBTreeIter() : _current(NULL) {}
 			RBTreeIter(RBTreeIter const &rhs) : _current(rhs._current) {}
@@ -49,7 +48,9 @@ namespace ft
 			bool operator!=(const RBTreeIter & rhs) { return (_current != rhs._current); }
 			T *operator*() { return(&(_current->_data)); }
 			T *operator->() { return(&(_current->_data)); }
-
+			T	getVal( void ){
+				return (this->_current->_data);
+			}
 			RBTreeIter &operator++()
 			{
 				if (_current->right)
