@@ -6,7 +6,7 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:04:41 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 18:20:10 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:02:26 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define __MAP_HPP__
 
 #include "reverseMapIterator.hpp"
-#include "red_black_tree.hpp"
+#include "red_black_tree_map.hpp"
 #include "RBTreeIterators.hpp"
 #include "../utils/lexicographical_compare.hpp"
 #include "../utils/equal.hpp"
@@ -42,11 +42,11 @@ namespace ft
 			typedef ft::RBTreeIter<value_type, Node<key, T> >					iterator;
 			typedef	std::ptrdiff_t												difference_type;
 			typedef	size_t														size_type;
-			typedef	typename ft::RBTree<key, T>::const_iterator					const_iterator;
-			typedef	typename ft::RBTree<key, T>::reverse_iterator				reverse_iterator;		
+			typedef	typename ft::RBTreeMap<key, T>::const_iterator					const_iterator;
+			typedef	typename ft::RBTreeMap<key, T>::reverse_iterator				reverse_iterator;		
 			typedef	typename ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 		private:
-			ft::RBTree<key_type, map_type>	_tree;
+			ft::RBTreeMap<key_type, map_type>	_tree;
 			size_type						_size;
 			Allocator_type					_alloc;
 			node_alloc						_node_alloc;

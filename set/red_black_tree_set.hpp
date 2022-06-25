@@ -1,5 +1,17 @@
-#ifndef __RED_BLACK_TREE_HPP__
-#define __RED_BLACK_TREE_HPP__
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   red_black_tree.hpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/25 22:50:25 by abarchil          #+#    #+#             */
+/*   Updated: 2022/06/25 22:50:25 by abarchil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef __RED_BALCK_TREE_SET_HPP__
+#define __RED_BALCK_TREE_SET_HPP__
 
 #define RED 1
 #define BLACK 0
@@ -24,7 +36,7 @@ namespace ft
 	{
 		public:
 			typedef	Allocator													Allocator_type;
-			typedef T													value_type;
+			typedef T															value_type;
 			typedef Compare 													value_compare;
 			typedef	typename Allocator::pointer									pointer;
 			typedef	typename Allocator::const_pointer							const_pointer;
@@ -339,7 +351,7 @@ namespace ft
 			void	erase(Iterator val)
 			{
 				this->_size--;
-				delete_node(this->_data, val->_current.first);
+				delete_node(this->_data, val->_currentm);
 			}
 
 			Iterator	end( void )

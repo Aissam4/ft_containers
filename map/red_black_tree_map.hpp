@@ -1,5 +1,18 @@
-#ifndef __RED_BLACK_TREE_HPP__
-#define __RED_BLACK_TREE_HPP__
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   red_black_tree_map.hpp                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/25 22:56:21 by abarchil          #+#    #+#             */
+/*   Updated: 2022/06/25 22:56:21 by abarchil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+#ifndef __RED_BLACK_TREE_MAP_HPP__
+#define __RED_BLACK_TREE_MAP_HPP__
 
 #define RED 1
 #define BLACK 0
@@ -20,7 +33,7 @@ namespace ft
 			Node() : right(NULL), left(NULL), parent(NULL), color(RED){};
 		};
 	template < class key, class T, class Compare = std::less<key>, class Allocator = std::allocator<ft::pair<key,T> > >
-	class RBTree
+	class RBTreeMap
 	{
 		public:
 			typedef	key															key_type;
@@ -48,14 +61,14 @@ namespace ft
 			key_compare		_comp;
 			int				_flag;
 		public:
-			RBTree(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL), _end(NULL)
+			RBTreeMap(const key_compare &comp = key_compare(), const Allocator_type &alloc = Allocator_type()): _data(NULL), _end(NULL)
 			{
 				this->_size = 0;
 				this->_alloc = alloc;
 				this->_comp = comp;
 				this->_flag = 1;
 			}
-			~RBTree( void )
+			~RBTreeMap( void )
 			{
 				this->_size = 0;
 			}

@@ -6,12 +6,12 @@
 /*   By: abarchil <abarchil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:29:03 by abarchil          #+#    #+#             */
-/*   Updated: 2022/06/25 00:02:14 by abarchil         ###   ########.fr       */
+/*   Updated: 2022/06/25 22:54:27 by abarchil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __REVERSESetITERATOR_HPP__
-#define __REVERSESetITERATOR_HPP__
+#ifndef __REVERSESETITERATOR_HPP__
+#define __REVERSESETITERATOR_HPP__
 
 #include "setIterator.hpp"
 
